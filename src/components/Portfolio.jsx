@@ -1,25 +1,28 @@
 import React from 'react';
 
 const projects = [
+
   {
-    name: 'Lateshow Brian Iraru',
-    link: 'https://github.com/irarubrian/lateshow-_brian_iraru',
-    description: 'A dynamic web project showcasing a UI concept and frontend logic.',
+    name: 'Fashion Design Frontend',
+    link: 'https://fashion-design-fronted-rbcz.vercel.app/',
+    description: 'A fashion design web frontend showcasing modern UI elements and design tools.',
+  },
+  {
+    name: 'Weather App Live',
+    link: 'https://weather-a-pp-psi.vercel.app/',
+    description: 'A deployed weather app providing live forecasts using API integration.',
   },
   {
     name: 'Flask Superheroes API',
     link: 'https://github.com/irarubrian/flask-superheroes2.api',
     description: 'A backend API built with Flask to manage superheroes and their powers.',
   },
+  
+ 
   {
-    name: 'Weather App',
-    link: 'https://github.com/irarubrian/WEATHER-aPP',
-    description: 'A weather forecasting application built with API integration.',
-  },
-  {
-    name: 'Task Management System',
-    link: 'https://github.com/irarubrian/task-management-python',
-    description: 'A command-line Python project to manage and organize tasks.',
+    name: 'Weather App Live',
+    link: 'https://weather-a-pp-psi.vercel.app/',
+    description: 'A deployed weather app providing live forecasts using API integration.',
   },
 ];
 
@@ -38,7 +41,7 @@ const Portfolio = () => {
               rel="noopener noreferrer"
               className="project-link"
             >
-              View on GitHub →
+              View Project →
             </a>
           </div>
         ))}
