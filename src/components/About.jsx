@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 const About = () => {
     return (
         <section className="about-section">
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="about-container">
                 <div className="about-header">
                     <h1 className="about-title">About Me</h1>
