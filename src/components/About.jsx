@@ -1,88 +1,204 @@
 import React from 'react';
 import Navbar from './Navbar';
 
-
 const About = () => {
     return (
         <section className="about-section">
+            <Navbar />
             <div className="about-container">
-                <h1 className="about-title">About Me</h1>
+                <div className="about-header">
+                    <h1 className="about-title">About Me</h1>
+                    <p className="about-subtitle">Get to know the developer behind the code</p>
+                </div>
                 
                 <div className="about-content">
                     <div className="about-left">
-                        <div className="about-bio">
-                            <p>I am a passionate junior full-stack developer with a growing skill set in both frontend and backend technologies. I enjoy building responsive and user-friendly web applications using modern tools like React,Javascript,python, Flask, and SQLAlchemy.</p>
-                            <p>As a developer, I value collaboration, problem-solving, and continuous improvement. I'm currently honing my skills by contributing to full-stack applications that involve real-time updates, user interactions, and dynamic content rendering.</p>
+                        <div className="about-card">
+                            <h2 className="section-title">My Story</h2>
+                            <div className="about-bio">
+                                <p>I'm Brian Iraru, a passionate full-stack developer with expertise in both frontend and backend technologies. My journey in software development began with a fascination for solving problems through code, which led me to pursue formal education in Applied Software Engineering.</p>
+                                <p>What started as curiosity has grown into a professional career where I build responsive, scalable web applications using modern frameworks and tools. I specialize in creating efficient solutions that bridge user experience with robust backend functionality.</p>
+                                <p>When I'm not coding, you can find me contributing to open-source projects, learning new technologies, or mentoring aspiring developers in my community.</p>
+                            </div>
                         </div>
 
-                        <div className="about-info">
-                            <h2>Personal Information</h2>
-                            <ul>
-                                <li><span className="info-label">Age:</span> 21</li>
-                                <li><span className="info-label">Email:</span> brian.o.iraru@gmail.com</li>
-                                <li><span className="info-label">Certificate:</span> Applied Software Engineering</li>
-                                <li><span className="info-label">Phone:</span> +254 743435490</li>
-                                <li><span className="info-label">City:</span> Nairobi, Kenya</li>
-                                <li><span className="info-label">Freelance:</span> Available</li>
-                            </ul>
+                        <div className="about-card">
+                            <h2 className="section-title">Personal Details</h2>
+                            <div className="about-info">
+                                <div className="info-item">
+                                    <span className="info-icon">👤</span>
+                                    <div>
+                                        <h4>Name</h4>
+                                        <p>Brian Iraru</p>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <span className="info-icon">📧</span>
+                                    <div>
+                                        <h4>Email</h4>
+                                        <p>brian.o.iraru@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <span className="info-icon">📞</span>
+                                    <div>
+                                        <h4>Phone</h4>
+                                        <p>+254 743435490</p>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <span className="info-icon">📍</span>
+                                    <div>
+                                        <h4>Location</h4>
+                                        <p>Nairobi, Kenya</p>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <span className="info-icon">🎓</span>
+                                    <div>
+                                        <h4>Education</h4>
+                                        <p>Applied Software Engineering</p>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <span className="info-icon">💼</span>
+                                    <div>
+                                        <h4>Availability</h4>
+                                        <p>Open for freelance opportunities</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div className="about-right">
-                        <div className="skills-section">
-                            <h2>My Skills</h2>
-                            <div className="skill-item">
-                                <div className="skill-header">
-                                    <span>HTML & CSS</span>
-                                    <span>80%</span>
+                        <div className="skills-card">
+                            <h2 className="section-title">Technical Expertise</h2>
+                            
+                            <div className="skill-category">
+                                <h3 className="skill-category-title">
+                                    <span className="category-icon">💻</span>
+                                    Frontend Development
+                                </h3>
+                                <div className="skill-item">
+                                    <div className="skill-header">
+                                        <span>JavaScript (ES6+)</span>
+                                        <span>90%</span>
+                                    </div>
+                                    <div className="skill-bar">
+                                        <div className="skill-progress" style={{ width: '90%' }}></div>
+                                    </div>
                                 </div>
-                                <div className="skill-bar">
-                                    <div className="skill-progress" style={{ width: '80%' }}></div>
+                                <div className="skill-item">
+                                    <div className="skill-header">
+                                        <span>React.js</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div className="skill-bar">
+                                        <div className="skill-progress" style={{ width: '85%' }}></div>
+                                    </div>
+                                </div>
+                                <div className="skill-item">
+                                    <div className="skill-header">
+                                        <span>Tailwind CSS</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div className="skill-bar">
+                                        <div className="skill-progress" style={{ width: '80%' }}></div>
+                                    </div>
                                 </div>
                             </div>
-                            {/* Repeat for other skills */}
-                            <div className="skill-item">
-                                <div className="skill-header">
-                                    <span>React js</span>
-                                    <span>70%</span>
+                            
+                            <div className="skill-category">
+                                <h3 className="skill-category-title">
+                                    <span className="category-icon">🔧</span>
+                                    Backend Development
+                                </h3>
+                                <div className="skill-item">
+                                    <div className="skill-header">
+                                        <span>Python</span>
+                                        <span>88%</span>
+                                    </div>
+                                    <div className="skill-bar">
+                                        <div className="skill-progress" style={{ width: '88%' }}></div>
+                                    </div>
                                 </div>
-                                <div className="skill-bar">
-                                    <div className="skill-progress" style={{ width: '70%' }}></div>
+                                <div className="skill-item">
+                                    <div className="skill-header">
+                                        <span>Flask</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div className="skill-bar">
+                                        <div className="skill-progress" style={{ width: '85%' }}></div>
+                                    </div>
+                                </div>
+                                <div className="skill-item">
+                                    <div className="skill-header">
+                                        <span>SQLAlchemy</span>
+                                        <span>82%</span>
+                                    </div>
+                                    <div className="skill-bar">
+                                        <div className="skill-progress" style={{ width: '82%' }}></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="skill-item">
-                                <div className="skill-header">
-                                    <span>Javascript</span>
-                                    <span>65%</span>
+                            
+                            <div className="skill-category">
+                                <h3 className="skill-category-title">
+                                    <span className="category-icon">🗃️</span>
+                                    Database
+                                </h3>
+                                <div className="skill-item">
+                                    <div className="skill-header">
+                                        <span>PostgreSQL</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div className="skill-bar">
+                                        <div className="skill-progress" style={{ width: '85%' }}></div>
+                                    </div>
                                 </div>
-
-                            <div className='skill-item'></div>
-                                <div className="skill-bar">
-                                    <div className="skill-progress" style={{ width: '65%' }}></div>
+                                <div className="skill-item">
+                                    <div className="skill-header">
+                                        <span>Database Design</span>
+                                        <span>80%</span>
+                                    </div>
+                                    <div className="skill-bar">
+                                        <div className="skill-progress" style={{ width: '80%' }}></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
 
-                <div className="about-stats">
-                    <div className="stat-item">
-                        <h3>6+ months</h3>
-                        <p>Experience</p>
-                    </div>
-                    <div className="stat-item">
-                        <h3>21+</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div className="stat-item">
-                        <h3>15+</h3>
-                        <p>Happy Clients</p>
+                <div className="achievements-section">
+                    <h2 className="section-title">My Achievements</h2>
+                    <div className="achievements-grid">
+                        <div className="achievement-card">
+                            <div className="achievement-icon">🚀</div>
+                            <h3>6+ months</h3>
+                            <p>Professional Development Experience</p>
+                        </div>
+                        <div className="achievement-card">
+                            <div className="achievement-icon">📂</div>
+                            <h3>25+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div className="achievement-card">
+                            <div className="achievement-icon">😊</div>
+                            <h3>20+</h3>
+                            <p>Satisfied Clients</p>
+                        </div>
+                        <div className="achievement-card">
+                            <div className="achievement-icon">🌐</div>
+                            <h3>15+</h3>
+                            <p>Open Source Contributions</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     );
-}
+};
 
 export default About;
