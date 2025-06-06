@@ -480,12 +480,30 @@ body.dark {
 @media (max-width: 768px) {
   .contact-content {
     flex-direction: column;
+    gap: 20px;
+    padding: 0;
   }
-  
   .contact-info, .contact-form {
     flex: none;
     width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 20px 8px;
   }
+  .contact-container {
+    padding: 40px 5px;
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+.contact-container, .contact-content, .contact-info, .contact-form {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 /* Footer */
 footer {
