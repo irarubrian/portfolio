@@ -147,8 +147,8 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
           >
-            I build digital solutions with modern technologies. Passionate about 
-            clean code, intuitive interfaces, and continuous learning in software 
+            I build digital solutions with modern technologies. Passionate about
+            clean code, intuitive interfaces, and continuous learning in software
             development.
           </motion.p>
 
@@ -214,6 +214,38 @@ const Hero = () => {
                 View Portfolio
               </motion.button>
             </Link>
+            <a
+              href="/brian.pdf"
+              download
+              style={{
+                textDecoration: "none",
+                minWidth: "180px",
+              }}
+            >
+              <motion.button
+                style={{
+                  padding: "0.75rem 2rem",
+                  background: "#fff",
+                  color: "#2563eb",
+                  borderRadius: "9999px",
+                  fontWeight: 500,
+                  fontSize: "0.95rem",
+                  border: "2px solid #2563eb",
+                  cursor: "pointer",
+                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                  marginTop: "0.5rem",
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "#2563eb",
+                  color: "#fff",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.15)",
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Download CV
+              </motion.button>
+            </a>
           </motion.div>
         </div>
       </motion.div>
