@@ -215,8 +215,9 @@ const Hero = () => {
               </motion.button>
             </Link>
             <a
-              href="/brian.pdf"
-              download
+              href="/brianiraru.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 textDecoration: "none",
                 minWidth: "180px",
@@ -243,7 +244,7 @@ const Hero = () => {
                 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Download CV
+                View My CV
               </motion.button>
             </a>
           </motion.div>
