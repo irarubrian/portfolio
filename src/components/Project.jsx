@@ -1,7 +1,6 @@
 import React from 'react';
 
 const projects = [
-
   {
     name: 'Weather App Live',
     link: 'https://weather-a-pp-psi.vercel.app/',
@@ -27,7 +26,7 @@ const projects = [
   
 ];
 
-const Portfolio = () => {
+const Project = () => {
   return (
     <section className="portfolio">
       <h2 className="portfolio-title">My Projects</h2>
@@ -51,4 +50,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Project;
