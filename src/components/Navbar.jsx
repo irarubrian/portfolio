@@ -20,20 +20,19 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
   const handleLinkClick = () => setMenuOpen(false);
 
   return (
-    <nav className={`navbar${darkMode ? ' dark' : ''}`}> 
-      {/* Hamburger icon always visible */}
+    <nav className="navbar">
       <button
-        className='nav-hamburger'
+        className="nav-hamburger"
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={menuOpen}
         onClick={handleMenuToggle}
         type="button"
-        style={{ zIndex: 103 }}
+        style={{ zIndex: 106 }}
       >
         {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
       </button>
 
-      {/* Overlay for mobile menu */}
+      {/* Hamburger menu overlay for mobile */}
       {menuOpen && <div className="nav-overlay" onClick={handleMenuToggle} />}
 
       <ul className={`nav-menu${menuOpen ? ' open' : ''}`}>
