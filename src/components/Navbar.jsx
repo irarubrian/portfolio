@@ -26,7 +26,8 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
 
   return (
     <nav className="navbar">
-      {/* Logo/Brand can be added here */}
+      {/* SVG Logo/Brand - always top right, responsive */}
+      {/* Logo removed as requested */}
 
       {/* Hamburger Button - Mobile Only */}
       {isMobile && (
@@ -46,12 +47,21 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
         <NavLink to="/services" activeclassname="active" onClick={closeMenu}>Services</NavLink>
         <NavLink to="/portfolio" activeclassname="active" onClick={closeMenu}>Projects</NavLink>
         <NavLink to="/contact" activeclassname="active" onClick={closeMenu}>Contact</NavLink>
+        {/* Quick Links (for About page or global use) */}
+        <div className="quick-links" style={{display: isMobile ? 'block' : 'none', marginTop: '2rem'}}>
+          <span style={{fontWeight: 600, fontSize: '1rem', marginBottom: 8, display: 'block'}}>Quick Links</span>
+          <NavLink to="/" onClick={closeMenu}>Home</NavLink>
+          <NavLink to="/about" onClick={closeMenu}>About</NavLink>
+          <NavLink to="/portfolio" onClick={closeMenu}>Projects</NavLink>
+          <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
+        </div>
       </div>
 
-      {/* Dark Mode Toggle */}
+      {/* Dark Mode Toggle - works everywhere */}
       <button 
         className="dark-mode-toggle"
         onClick={toggleDarkMode}
+        aria-label="Toggle dark mode"
       >
         {darkMode ? '☀️ Light' : '🌙 Dark'}
       </button>
