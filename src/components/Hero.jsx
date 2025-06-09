@@ -393,37 +393,7 @@ const Hero = () => {
           position: relative;
           padding-top: 7rem;
         }
-        @media (max-width: 768px) {
-          .logo-container {
-            width: 70px;
-            height: 70px;
-            top: 1rem;
-            right: 1rem;
-          }
-          .hero-section {
-            padding-top: 8.5rem;
-          }
-          .profile-image-wrapper {
-            width: 140px !important;
-            height: 140px !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .logo-container {
-            width: 48px;
-            height: 48px;
-            top: 0.5rem;
-            right: 0.5rem;
-          }
-          .hero-section {
-            padding-top: 9.5rem;
-          }
-          .profile-image-wrapper {
-            width: 110px !important;
-            height: 110px !important;
-          }
-        }
-
+        
         .hero-content {
           padding-top: 6rem;
         }
@@ -459,7 +429,7 @@ const Hero = () => {
           color: #fff;
           font-weight: 800;
           font-size: 1.1rem;
-          letter-spacing: "1px",
+          letter-spacing: 1px;
           z-index: 2;
         }
 
@@ -480,6 +450,8 @@ const Hero = () => {
 
         .profile-image-wrapper {
           transition: transform 0.3s ease;
+          width: 180px;
+          height: 180px;
         }
 
         .profile-image-wrapper:hover {
@@ -708,6 +680,8 @@ const Hero = () => {
           border-radius: 6px;
           transition: all 0.2s ease;
           background: rgba(59, 130, 246, 0.1);
+          margin-bottom: 0.5rem;
+          width: 100%;
         }
 
         .footer-social-icon {
@@ -736,6 +710,119 @@ const Hero = () => {
         .footer-copyright {
           color: #94a3b8;
           font-size: 0.85rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+          .hero-content {
+            padding-top: 8rem;
+          }
+          
+          .hero-intro {
+            font-size: 1.05rem;
+            padding: 1.25rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-section {
+            padding-top: 9rem;
+          }
+          
+          .logo-container {
+            width: 100px;
+            height: 100px;
+            top: 1.5rem;
+            right: 1.5rem;
+          }
+          
+          .logo-text {
+            font-size: 0.9rem;
+          }
+          
+          .profile-image-wrapper {
+            width: 150px;
+            height: 150px;
+          }
+          
+          .hero-content {
+            padding-top: 7rem;
+            gap: 2rem;
+          }
+          
+          .hero-intro {
+            font-size: 1rem;
+            padding: 1rem;
+            margin: 1.5rem 0;
+          }
+          
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+          
+          .footer-column {
+            align-items: center;
+            text-align: center;
+          }
+          
+          .footer-nav,
+          .footer-contact-list,
+          .footer-social-links {
+            align-items: center;
+          }
+          
+          .footer-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-section {
+            padding-top: 10rem;
+          }
+          
+          .logo-container {
+            width: 80px;
+            height: 80px;
+            top: 1rem;
+            right: 1rem;
+          }
+          
+          .logo-text {
+            font-size: 0.8rem;
+          }
+          
+          .profile-image-wrapper {
+            width: 130px;
+            height: 130px;
+          }
+          
+          .hero-title {
+            font-size: 2rem;
+          }
+          
+          .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+          }
+          
+          .button-link {
+            width: 100%;
+            max-width: 220px;
+          }
+          
+          .footer-contact-item {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.3rem;
+          }
+          
+          .footer-social-link {
+            justify-content: center;
+          }
         }
 
         html, body, #root {
