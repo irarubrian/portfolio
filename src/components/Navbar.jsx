@@ -25,61 +25,48 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <nav className="navbar">
-      {/* SVG Logo/Brand - always top right, responsive, links to contact */}
-      {darkMode ? null : (
-        <a href="#contact" className="nav-logo" style={{position: 'absolute', top: 12, right: 16, zIndex: 120}} aria-label="Contact">
-          <img src={import.meta.env.BASE_URL + 'src/assets/react.svg'} alt="Brian Iraru Logo" style={{width: 40, height: 40, minWidth: 32, minHeight: 32, maxWidth: 56, maxHeight: 56}} />
-        </a>
-      )}
+    <>
+      <nav className="navbar">
+        {/* Remove Brian Iraru logo from navbar */}
 
-      {/* Hamburger Button - Mobile Only */}
-      {isMobile && (
-        <button 
-          className="hamburger-btn"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
-      )}
-
-      {/* Navigation Menu */}
-      <div className={`nav-links ${isOpen ? 'active' : ''}`}
-        style={{ background: darkMode ? '#222' : '#fff', color: darkMode ? '#f4f4f4' : '#222' }}
-      >
-        <NavLink to="/" end activeclassname="active" onClick={closeMenu}>Home</NavLink>
-        <NavLink to="/about" activeclassname="active" onClick={closeMenu}>About</NavLink>
-        <NavLink to="/services" activeclassname="active" onClick={closeMenu}>Services</NavLink>
-        <NavLink to="/portfolio" activeclassname="active" onClick={closeMenu}>Projects</NavLink>
-        <NavLink to="/contact" activeclassname="active" onClick={closeMenu}>Contact</NavLink>
-        {/* Quick Links - always visible in mobile menu, visible in desktop if desired */}
+        {/* Hamburger Button - Mobile Only */}
         {isMobile && (
-          <div className="quick-links" style={{marginTop: '2rem'}}>
-            <span style={{fontWeight: 600, fontSize: '1rem', marginBottom: 8, display: 'block'}}>Quick Links</span>
-            <NavLink to="/" onClick={closeMenu}>Home</NavLink>
-            <NavLink to="/about" onClick={closeMenu}>About</NavLink>
-            <NavLink to="/portfolio" onClick={closeMenu}>Projects</NavLink>
-            <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
-          </div>
+          <button 
+            className="hamburger-btn"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
         )}
-      </div>
 
-      {/* Dark Mode Toggle - works everywhere */}
-      <button 
-        className="dark-mode-toggle"
-        onClick={toggleDarkMode}
-        aria-label="Toggle dark mode"
-        style={{ color: darkMode ? '#f4f4f4' : '#222' }}
-      >
-        {darkMode ? '☀️ Light' : '🌙 Dark'}
-      </button>
+        {/* Navigation Menu */}
+        <div className={`nav-links ${isOpen ? 'active' : ''}`}
+          style={{ background: darkMode ? '#222' : '#fff', color: darkMode ? '#f4f4f4' : '#222' }}
+        >
+          <NavLink to="/" end activeclassname="active" onClick={closeMenu}>Home</NavLink>
+          <NavLink to="/about" activeclassname="active" onClick={closeMenu}>About</NavLink>
+          <NavLink to="/services" activeclassname="active" onClick={closeMenu}>Services</NavLink>
+          <NavLink to="/portfolio" activeclassname="active" onClick={closeMenu}>Projects</NavLink>
+          <NavLink to="/contact" activeclassname="active" onClick={closeMenu}>Contact</NavLink>
+        </div>
 
-      {/* Mobile Menu Overlay */}
-      {isOpen && isMobile && (
-        <div className="mobile-overlay" onClick={closeMenu} />
-      )}
-    </nav>
+        {/* Dark Mode Toggle - works everywhere */}
+        <button 
+          className="dark-mode-toggle"
+          onClick={toggleDarkMode}
+          aria-label="Toggle dark mode"
+          style={{ color: darkMode ? '#f4f4f4' : '#222' }}
+        >
+          {darkMode ? '☀️ Light' : '🌙 Dark'}
+        </button>
+
+        {/* Mobile Menu Overlay */}
+        {isOpen && isMobile && (
+          <div className="mobile-overlay" onClick={closeMenu} />
+        )}
+      </nav>
+    </>
   );
 };
 
