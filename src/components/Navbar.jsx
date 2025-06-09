@@ -1,88 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import './Navbar.css';
 
 const Navbar = ({ toggleDarkMode, darkMode }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
 
-  // Check if mobile on mount and resize
   useEffect(() => {
-    const checkIfMobile = () => {
+    const handleResize = () => {
       setIsMobile(window.innerWidth < 900);
+      if (window.innerWidth >= 900) setIsOpen(false);
     };
 
-    checkIfMobile(); // Initial check
-    window.addEventListener('resize', checkIfMobile);
-
-    return () => window.removeEventListener('resize', checkIfMobile);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Prevent scrolling when mobile menu is open
   useEffect(() => {
-    if (menuOpen && isMobile) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }, [menuOpen, isMobile]);
+    document.body.style.overflow = isOpen && isMobile ? 'hidden' : '';
+  }, [isOpen, isMobile]);
 
-  const handleMenuToggle = () => setMenuOpen(!menuOpen);
-  const handleLinkClick = () => setMenuOpen(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <nav className="navbar">
-      {/* Hamburger menu button - only on mobile */}
+      {/* Logo/Brand can be added here */}
+
+      {/* Hamburger Button - Mobile Only */}
       {isMobile && (
-        <button
-          className="nav-hamburger"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          onClick={handleMenuToggle}
+        <button 
+          className="hamburger-btn"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
         >
-          {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
+          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
       )}
 
-      {/* Overlay - only when mobile menu is open */}
-      {isMobile && menuOpen && (
-        <div className="nav-overlay" onClick={handleMenuToggle} />
-      )}
+      {/* Navigation Menu */}
+      <div className={`nav-links ${isOpen ? 'active' : ''}`}>
+        <NavLink to="/" end activeclassname="active" onClick={closeMenu}>Home</NavLink>
+        <NavLink to="/about" activeclassname="active" onClick={closeMenu}>About</NavLink>
+        <NavLink to="/services" activeclassname="active" onClick={closeMenu}>Services</NavLink>
+        <NavLink to="/portfolio" activeclassname="active" onClick={closeMenu}>Projects</NavLink>
+        <NavLink to="/contact" activeclassname="active" onClick={closeMenu}>Contact</NavLink>
+      </div>
 
-      {/* Navigation menu - always visible on desktop, conditionally on mobile */}
-      <ul className={`nav-menu ${menuOpen && isMobile ? 'open' : ''}`}>
-        <li><NavLink to="/" exact="true" activeclassname="active" onClick={handleLinkClick}>Home</NavLink></li>
-        <li><NavLink to="/about" activeclassname="active" onClick={handleLinkClick}>About Me</NavLink></li>
-        <li><NavLink to="/services" activeclassname="active" onClick={handleLinkClick}>Services</NavLink></li>
-        <li><NavLink to="/portfolio" activeclassname="active" onClick={handleLinkClick}>Project</NavLink></li>
-        <li><NavLink to="/contact" activeclassname="active" onClick={handleLinkClick}>Contact</NavLink></li>
-        
-        {/* Dark mode toggle in mobile menu */}
-        {isMobile && (
-          <li className="nav-mobile-toggle">
-            <button
-              className="dark-mode-toggle"
-              onClick={() => {
-                toggleDarkMode();
-                handleLinkClick();
-              }}
-              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              {darkMode ? '☀️ Light' : '🌙 Dark'}
-            </button>
-          </li>
-        )}
-      </ul>
+      {/* Dark Mode Toggle */}
+      <button 
+        className="dark-mode-toggle"
+        onClick={toggleDarkMode}
+      >
+        {darkMode ? '☀️ Light' : '🌙 Dark'}
+      </button>
 
-      {/* Dark mode toggle - desktop only */}
-      {!isMobile && (
-        <button
-          className="dark-mode-toggle"
-          onClick={toggleDarkMode}
-          title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-        >
-          {darkMode ? '☀️ Light' : '🌙 Dark'}
-        </button>
+      {/* Mobile Menu Overlay */}
+      {isOpen && isMobile && (
+        <div className="mobile-overlay" onClick={closeMenu} />
       )}
     </nav>
   );

@@ -1,10 +1,9 @@
-*{
-  margin: 0;
-  padding: 0;
+:root {
+  --navbar-bg: #ffffff;
+  --navbar-text: #333333;
 }
 
-body{
-  height: 100vh;
-  background: #161516;
-  color: aqua;
+[data-theme="dark"] {
+  --navbar-bg: #1a1a1a;
+  --navbar-text: #f0f0f0;
 }
