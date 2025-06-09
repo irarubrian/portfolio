@@ -41,107 +41,101 @@ const Hero = () => {
       />
 
       {/* Circular Logo at the Top */}
-      <motion.div
-        className="logo-container"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
-        style={{
-          position: "absolute",
-          top: "2rem",
-          right: "2rem",
-          zIndex: 10,
-          width: "140px",
-          height: "140px",
-        }}
-      >
-        <motion.a
-          href="/contact"
-          className="circular-logo"
-          style={{
-            display: "block",
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            borderRadius: "50%",
-            background: "linear-gradient(135deg, #2563eb 60%, #111827 100%)",
-            boxShadow: "0 8px 32px rgba(37, 99, 235, 0.18)",
-            textAlign: "center",
-            textDecoration: "none",
-            cursor: "pointer",
-            overflow: "visible",
-          }}
-          whileHover={{ scale: 1.08, boxShadow: "0 12px 40px rgba(37, 99, 235, 0.3)" }}
-          whileTap={{ scale: 0.97 }}
-          title="Hire Me"
+      <div className="logo-mobile-wrapper">
+        <motion.div
+          className="logo-container"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <motion.div
-            className="logo-text"
+          <motion.a
+            href="/contact"
+            className="circular-logo"
             style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              color: "#fff",
-              fontWeight: 800,
-              fontSize: "1.1rem",
-              letterSpacing: "1px",
-              zIndex: 2,
-              pointerEvents: "none"
-            }}
-          >
-            Hire Me
-          </motion.div>
-
-          <motion.div
-            className="rotating-text-container"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
+              display: "block",
+              position: "relative",
               width: "100%",
               height: "100%",
-              pointerEvents: "none",
-              zIndex: 1
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #2563eb 60%, #111827 100%)",
+              boxShadow: "0 8px 32px rgba(37, 99, 235, 0.18)",
+              textAlign: "center",
+              textDecoration: "none",
+              cursor: "pointer",
+              overflow: "visible",
             }}
-            animate={{ rotate: 360 }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 25,
-              ease: "linear" 
-            }}
+            whileHover={{ scale: 1.08, boxShadow: "0 12px 40px rgba(37, 99, 235, 0.3)" }}
+            whileTap={{ scale: 0.97 }}
+            title="Hire Me"
           >
-            <svg 
-              width="100%" 
-              height="100%" 
-              viewBox="0 0 140 140"
+            <motion.div
+              className="logo-text"
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "#fff",
+                fontWeight: 800,
+                fontSize: "1.1rem",
+                letterSpacing: "1px",
+                zIndex: 2,
+                pointerEvents: "none"
+              }}
             >
-              <defs>
-                <path 
-                  id="circlePath" 
-                  d="M70,70 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0" 
-                />
-              </defs>
-              <text 
-                fill="#fff" 
-                fontSize="10" 
-                fontWeight="600"
-                fontFamily="Arial, sans-serif"
-                letterSpacing="2"
+              Hire Me
+            </motion.div>
+
+            <motion.div
+              className="rotating-text-container"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                pointerEvents: "none",
+                zIndex: 1
+              }}
+              animate={{ rotate: 360 }}
+              transition={{ 
+                repeat: Infinity, 
+                duration: 25,
+                ease: "linear" 
+              }}
+            >
+              <svg 
+                width="100%" 
+                height="100%" 
+                viewBox="0 0 140 140"
               >
-                <textPath 
-                  xlinkHref="#circlePath" 
-                  startOffset="0"
-                  textAnchor="start"
-                  dominantBaseline="middle"
+                <defs>
+                  <path 
+                    id="circlePath" 
+                    d="M70,70 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0" 
+                  />
+                </defs>
+                <text 
+                  fill="#fff" 
+                  fontSize="10" 
+                  fontWeight="600"
+                  fontFamily="Arial, sans-serif"
+                  letterSpacing="2"
                 >
-                  • SOFTWARE ENGINEER • FULL STACK DEVELOPER • HIRE ME • 
-                </textPath>
-              </text>
-            </svg>
-          </motion.div>
-        </motion.a>
-      </motion.div>
+                  <textPath 
+                    xlinkHref="#circlePath" 
+                    startOffset="0"
+                    textAnchor="start"
+                    dominantBaseline="middle"
+                  >
+                    • SOFTWARE ENGINEER • FULL STACK DEVELOPER • HIRE ME • 
+                  </textPath>
+                </text>
+              </svg>
+            </motion.div>
+          </motion.a>
+        </motion.div>
+      </div>
 
       <motion.div
         className="hero-content"
@@ -398,64 +392,57 @@ const Hero = () => {
           padding-top: 6rem;
         }
 
-        .logo-container {
+        .logo-mobile-wrapper {
           position: absolute;
           top: 2rem;
           right: 2rem;
           z-index: 10;
+        }
+
+        .logo-container {
           width: 140px;
           height: 140px;
         }
 
-        .circular-logo {
-          display: block;
-          position: relative;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #2563eb 60%, #111827 100%);
-          box-shadow: 0 8px 32px rgba(37, 99, 235, 0.18);
-          text-align: center;
-          text-decoration: none;
-          cursor: pointer;
-          overflow: visible;
+        @media (max-width: 768px) {
+          .logo-mobile-wrapper {
+            position: static;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            top: unset;
+            right: unset;
+          }
+          .logo-container {
+            width: 90px;
+            height: 90px;
+            position: static;
+          }
         }
-
-        .logo-text {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          color: #fff;
-          font-weight: 800;
-          font-size: 1.1rem;
-          letter-spacing: 1px;
-          z-index: 2;
-        }
-
-        .rotating-text-container {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-          z-index: 1;
-        }
-
-        .rotating-text-container svg {
-          width: 100%;
-          height: 100%;
+        @media (max-width: 480px) {
+          .logo-container {
+            width: 64px;
+            height: 64px;
+          }
         }
 
         .profile-image-wrapper {
-          transition: transform 0.3s ease;
           width: 180px;
           height: 180px;
         }
 
-        .profile-image-wrapper:hover {
-          transform: scale(1.03);
+        @media (max-width: 768px) {
+          .profile-image-wrapper {
+            width: 150px;
+            height: 150px;
+          }
+        }
+        @media (max-width: 480px) {
+          .profile-image-wrapper {
+            width: 120px;
+            height: 120px;
+          }
         }
 
         .hero-title {
@@ -795,8 +782,8 @@ const Hero = () => {
           }
           
           .profile-image-wrapper {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
           }
           
           .hero-title {
