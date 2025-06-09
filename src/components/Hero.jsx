@@ -52,7 +52,7 @@ const Hero = () => {
           right: "2rem",
           zIndex: 10,
           width: "140px",
-          height: "140px"
+          height: "140px",
         }}
       >
         <motion.a
@@ -391,6 +391,7 @@ const Hero = () => {
       <style jsx>{`
         .hero-section {
           position: relative;
+          padding-top: 7rem;
         }
 
         .hero-content {
@@ -714,30 +715,32 @@ const Hero = () => {
 
         @media (max-width: 768px) {
           .logo-container {
-            width: 100px;
-            height: 100px;
-            top: 1.5rem;
-            right: 1.5rem;
+            width: 90px;
+            height: 90px;
+            top: 1rem;
+            right: 1rem;
           }
-
-          .footer-grid {
-            grid-template-columns: 1fr;
+          .hero-section {
+            padding-top: 8.5rem;
+          }
+          .profile-image-wrapper {
+            width: 120px !important;
+            height: 120px !important;
           }
         }
-
         @media (max-width: 480px) {
-          .hero-buttons {
-            flex-direction: column;
-            align-items: center;
+          .logo-container {
+            width: 64px;
+            height: 64px;
+            top: 0.5rem;
+            right: 0.5rem;
           }
-          
-          .button-link {
-            width: 100%;
+          .hero-section {
+            padding-top: 9.5rem;
           }
-          
-          .primary-button,
-          .tertiary-button {
-            width: 100%;
+          .profile-image-wrapper {
+            width: 90px !important;
+            height: 90px !important;
           }
         }
       `}</style>
