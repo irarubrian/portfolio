@@ -37,7 +37,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
       {menuOpen && <div className="nav-overlay" onClick={handleMenuToggle} />}
 
       {/* Hamburger menu navigation for mobile */}
-      <ul className={`nav-menu${menuOpen ? ' open' : ''}`} style={{ display: menuOpen ? 'flex' : 'none' }}>
+      <ul className={`nav-menu${menuOpen ? ' open' : ''}`} style={{ display: menuOpen || window.innerWidth > 900 ? 'flex' : 'none' }}>
         <li><NavLink to="/" exact="true" activeclassname="active" onClick={handleLinkClick}>Home</NavLink></li>
         <li><NavLink to="/about" activeclassname="active" onClick={handleLinkClick}>About Me</NavLink></li>
         <li><NavLink to="/services" activeclassname="active" onClick={handleLinkClick}>Services</NavLink></li>
