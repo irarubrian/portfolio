@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaGithub, FaReact, FaPython, FaDatabase, FaFigma, FaProjectDiagram, FaPhone, FaEnvelope, FaMapMarkerAlt, FaUser, FaGraduationCap, FaBriefcase, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaGithub, FaReact, FaPython, FaDatabase, FaFigma, FaProjectDiagram, FaPhone, FaEnvelope, FaMapMarkerAlt, FaUser, FaGraduationCap, FaBriefcase, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { SiJavascript, SiFlask, SiTailwindcss } from 'react-icons/si';
 
 const softSkills = [
@@ -88,56 +88,15 @@ What drives me is the opportunity to create impactful software that solves real-
 
 const About = () => {
   return (
-    <section className="about-section" style={{ 
-      maxWidth: '1200px', 
-      margin: '0 auto', 
-      padding: '2rem 1rem',
-      fontFamily: "'Inter', sans-serif",
-      color: '#333'
-    }}>
+    <section className="about-section" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 1rem', fontFamily: "'Inter', sans-serif", color: '#333' }}>
       <div className="about-container">
         {/* My Story Section */}
-        <motion.div 
-          className="about-card" 
-          style={{ 
-            marginBottom: '2.5rem', 
-            background: 'white', 
-            borderRadius: '12px', 
-            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)', 
-            padding: '2.5rem',
-            border: '1px solid rgba(37, 99, 235, 0.1)'
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="section-title" style={{ 
-            color: '#2563eb', 
-            marginBottom: '1.5rem',
-            fontSize: '1.8rem',
-            fontWeight: '700',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <span style={{ 
-              background: '#2563eb', 
-              width: '8px', 
-              height: '30px', 
-              display: 'inline-block', 
-              borderRadius: '4px' 
-            }}></span>
+        <motion.div className="about-card" style={{ marginBottom: '2.5rem', background: 'white', borderRadius: '12px', boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)', padding: '2.5rem', border: '1px solid rgba(37, 99, 235, 0.1)' }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <h2 className="section-title" style={{ color: '#2563eb', marginBottom: '1.5rem', fontSize: '1.8rem', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ background: '#2563eb', width: '8px', height: '30px', display: 'inline-block', borderRadius: '4px' }}></span>
             My Journey in Tech
           </h2>
-          <p style={{ 
-            fontSize: '1.15rem', 
-            color: '#4a5568', 
-            lineHeight: '1.7', 
-            margin: 0,
-            textAlign: 'justify'
-          }}>
-            {myStory}
-          </p>
+          <p style={{ fontSize: '1.15rem', color: '#4a5568', lineHeight: '1.7', margin: 0, textAlign: 'justify' }}>{myStory}</p>
         </motion.div>
 
         {/* Soft Skills Section */}
@@ -595,7 +554,7 @@ const About = () => {
         </div>
       </div>
 
-      <style jsx global>{`
+      <style global>{`
         .tech-icon {
           width: 28px;
           height: 28px;

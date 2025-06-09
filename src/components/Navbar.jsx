@@ -21,11 +21,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
 
   return (
     <nav className={`navbar${darkMode ? ' dark' : ''}`}> 
-      <div className='nav-left'>
-        {/* Logo removed as requested */}
-      </div>
-
-      {/* Hamburger icon for mobile */}
+      {/* Hamburger icon always visible */}
       <button
         className='nav-hamburger'
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -46,7 +42,6 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
         <li><NavLink to="/services" activeclassname="active" onClick={handleLinkClick}>Services</NavLink></li>
         <li><NavLink to="/portfolio" activeclassname="active" onClick={handleLinkClick}>Project</NavLink></li>
         <li><NavLink to="/contact" activeclassname="active" onClick={handleLinkClick}>Contact</NavLink></li>
-        {/* Move dark mode toggle into menu for mobile */}
         <li className='nav-mobile-toggle'>
           <button
             className='dark-mode-toggle'
@@ -57,17 +52,6 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
           </button>
         </li>
       </ul>
-
-      {/* Desktop only dark mode toggle */}
-      <div className='nav-right'>
-        <button
-          className='dark-mode-toggle'
-          onClick={toggleDarkMode}
-          title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-        >
-          {darkMode ? '\u2600\ufe0f Light' : '\ud83c\udf19 Dark'}
-        </button>
-      </div>
     </nav>
   );
 };
