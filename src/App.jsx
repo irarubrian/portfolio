@@ -10,7 +10,30 @@ import './App.css';
 import './components/Navbar.css';
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Use prefers-color-scheme for initial dark mode on mobile/desktop
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
+
+  // Prevent horizontal scroll and force 100vw on mobile
+  React.useEffect(() => {
+    document.documentElement.style.maxWidth = '100vw';
+    document.body.style.maxWidth = '100vw';
+    document.body.style.overflowX = 'hidden';
+    document.documentElement.style.overflowX = 'hidden';
+  }, []);
+
+  // Sync dark mode class on <html> for mobile/desktop
+  React.useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
