@@ -41,101 +41,98 @@ const Hero = () => {
       />
 
       {/* Circular Logo at the Top */}
-      <div className="logo-mobile-wrapper">
-        <motion.div
-          className="logo-container"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+      <motion.div
+        className="logo-container"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+      >
+        <motion.a
+          href="/contact"
+          className="circular-logo"
+          style={{
+            display: "block",
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #2563eb 60%, #111827 100%)",
+            boxShadow: "0 8px 32px rgba(37, 99, 235, 0.18)",
+            textAlign: "center",
+            textDecoration: "none",
+            cursor: "pointer",
+            overflow: "visible",
+          }}
+          whileHover={{ scale: 1.08, boxShadow: "0 12px 40px rgba(37, 99, 235, 0.3)" }}
+          whileTap={{ scale: 0.97 }}
+          title="Hire Me"
         >
-          <motion.a
-            href="/contact"
-            className="circular-logo"
+          <motion.div
+            className="logo-text"
             style={{
-              display: "block",
-              position: "relative",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              color: "#fff",
+              fontWeight: 800,
+              fontSize: "1.1rem",
+              letterSpacing: "1px",
+              zIndex: 2,
+              pointerEvents: "none"
+            }}
+          >
+            Hire Me
+          </motion.div>
+          <motion.div
+            className="rotating-text-container"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
               width: "100%",
               height: "100%",
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #2563eb 60%, #111827 100%)",
-              boxShadow: "0 8px 32px rgba(37, 99, 235, 0.18)",
-              textAlign: "center",
-              textDecoration: "none",
-              cursor: "pointer",
-              overflow: "visible",
+              pointerEvents: "none",
+              zIndex: 1
             }}
-            whileHover={{ scale: 1.08, boxShadow: "0 12px 40px rgba(37, 99, 235, 0.3)" }}
-            whileTap={{ scale: 0.97 }}
-            title="Hire Me"
+            animate={{ rotate: 360 }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 25,
+              ease: "linear" 
+            }}
           >
-            <motion.div
-              className="logo-text"
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                color: "#fff",
-                fontWeight: 800,
-                fontSize: "1.1rem",
-                letterSpacing: "1px",
-                zIndex: 2,
-                pointerEvents: "none"
-              }}
+            <svg 
+              width="100%" 
+              height="100%" 
+              viewBox="0 0 140 140"
             >
-              Hire Me
-            </motion.div>
-
-            <motion.div
-              className="rotating-text-container"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                pointerEvents: "none",
-                zIndex: 1
-              }}
-              animate={{ rotate: 360 }}
-              transition={{ 
-                repeat: Infinity, 
-                duration: 25,
-                ease: "linear" 
-              }}
-            >
-              <svg 
-                width="100%" 
-                height="100%" 
-                viewBox="0 0 140 140"
+              <defs>
+                <path 
+                  id="circlePath" 
+                  d="M70,70 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0" 
+                />
+              </defs>
+              <text 
+                fill="#fff" 
+                fontSize="10" 
+                fontWeight="600"
+                fontFamily="Arial, sans-serif"
+                letterSpacing="2"
               >
-                <defs>
-                  <path 
-                    id="circlePath" 
-                    d="M70,70 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0" 
-                  />
-                </defs>
-                <text 
-                  fill="#fff" 
-                  fontSize="10" 
-                  fontWeight="600"
-                  fontFamily="Arial, sans-serif"
-                  letterSpacing="2"
+                <textPath 
+                  xlinkHref="#circlePath" 
+                  startOffset="0"
+                  textAnchor="start"
+                  dominantBaseline="middle"
                 >
-                  <textPath 
-                    xlinkHref="#circlePath" 
-                    startOffset="0"
-                    textAnchor="start"
-                    dominantBaseline="middle"
-                  >
-                    • SOFTWARE ENGINEER • FULL STACK DEVELOPER • HIRE ME • 
-                  </textPath>
-                </text>
-              </svg>
-            </motion.div>
-          </motion.a>
-        </motion.div>
-      </div>
+                  • SOFTWARE ENGINEER • FULL STACK DEVELOPER • HIRE ME • 
+                </textPath>
+              </text>
+            </svg>
+          </motion.div>
+        </motion.a>
+      </motion.div>
 
       <motion.div
         className="hero-content"
@@ -392,38 +389,28 @@ const Hero = () => {
           padding-top: 6rem;
         }
 
-        .logo-mobile-wrapper {
+        .logo-container {
           position: absolute;
           top: 2rem;
           right: 2rem;
           z-index: 10;
-        }
-
-        .logo-container {
           width: 140px;
           height: 140px;
         }
-
         @media (max-width: 768px) {
-          .logo-mobile-wrapper {
-            position: static;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.2rem;
-            top: unset;
-            right: unset;
-          }
           .logo-container {
             width: 90px;
             height: 90px;
-            position: static;
+            top: 1rem;
+            right: 1rem;
           }
         }
         @media (max-width: 480px) {
           .logo-container {
             width: 64px;
             height: 64px;
+            top: 0.5rem;
+            right: 0.5rem;
           }
         }
 
@@ -580,6 +567,16 @@ const Hero = () => {
           grid-template-columns: repeat(3, 1fr);
           gap: 2rem;
           margin-bottom: 2rem;
+        }
+        @media (max-width: 900px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+          .footer-column {
+            align-items: center !important;
+            text-align: center !important;
+          }
         }
 
         .footer-column {
