@@ -27,19 +27,19 @@ const softSkills = [
 ];
 
 const techSkills = [
-  { name: 'HTML', percent: 90, icon: <img src={window.location.origin + '/src/assets/html5.svg'} alt="HTML5" className="tech-img" />, color: 'green' },
-  { name: 'CSS', percent: 92, icon: <img src={window.location.origin + '/src/assets/css3.svg'} alt="CSS3" className="tech-img" />, color: 'green' },
-  { name: 'GitHub', percent: 80, icon: <img src={window.location.origin + '/src/assets/github.svg'} alt="GitHub" className="tech-img" />, color: 'green' },
-  { name: 'Agile', percent: 88, icon: <span className="tech-img" style={{fontWeight:'bold',fontSize:'2rem',color:'green'}}>A</span>, color: 'green' },
-  { name: 'Figma', percent: 85, icon: <img src={window.location.origin + '/src/assets/figma.svg'} alt="Figma" className="tech-img" />, color: 'green' },
-  { name: 'JavaScript', percent: 75, icon: <img src={window.location.origin + '/src/assets/javascript.svg'} alt="JavaScript" className="tech-img" />, color: 'green' },
-  { name: 'React.js', percent: 80, icon: <img src={window.location.origin + '/src/assets/react.svg'} alt="React" className="tech-img" />, color: 'green' },
-  { name: 'Tailwind CSS', percent: 80, icon: <img src={window.location.origin + '/src/assets/tailwind.svg'} alt="Tailwind CSS" className="tech-img" />, color: 'green' },
-  { name: 'Python', percent: 85, icon: <img src={window.location.origin + '/src/assets/python.svg'} alt="Python" className="tech-img" />, color: 'green' },
-  { name: 'Flask', percent: 85, icon: <img src={window.location.origin + '/src/assets/flask.svg'} alt="Flask" className="tech-img" />, color: 'green' },
-  { name: 'SQLAlchemy', percent: 82, icon: <img src={window.location.origin + '/src/assets/sqlalchemy.svg'} alt="SQLAlchemy" className="tech-img" />, color: 'green' },
-  { name: 'PostgreSQL', percent: 85, icon: <img src={window.location.origin + '/src/assets/postgresql.svg'} alt="PostgreSQL" className="tech-img" />, color: 'green' },
-  { name: 'Database Design', percent: 80, icon: <img src={window.location.origin + '/src/assets/database.svg'} alt="Database Design" className="tech-img" />, color: 'green' },
+  { name: 'HTML', percent: 90, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/html5.svg' : window.location.origin + '/src/assets/html5.svg'} alt="HTML5" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'CSS', percent: 92, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/css3.svg' : window.location.origin + '/src/assets/css3.svg'} alt="CSS3" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'GitHub', percent: 80, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/github.svg' : window.location.origin + '/src/assets/github.svg'} alt="GitHub" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'Agile', percent: 88, icon: <span className="tech-img" style={{fontWeight:'bold',fontSize:'2rem',color:'green',minWidth:48,minHeight:48,display:'inline-block',textAlign:'center',lineHeight:'48px'}}>A</span>, color: 'green' },
+  { name: 'Figma', percent: 85, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/figma.svg' : window.location.origin + '/src/assets/figma.svg'} alt="Figma" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'JavaScript', percent: 75, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/javascript.svg' : window.location.origin + '/src/assets/javascript.svg'} alt="JavaScript" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'React.js', percent: 80, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/react.svg' : window.location.origin + '/src/assets/react.svg'} alt="React" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'Tailwind CSS', percent: 80, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/tailwind.svg' : window.location.origin + '/src/assets/tailwind.svg'} alt="Tailwind CSS" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'Python', percent: 85, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/python.svg' : window.location.origin + '/src/assets/python.svg'} alt="Python" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'Flask', percent: 85, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/flask.svg' : window.location.origin + '/src/assets/flask.svg'} alt="Flask" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'SQLAlchemy', percent: 82, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/sqlalchemy.svg' : window.location.origin + '/src/assets/sqlalchemy.svg'} alt="SQLAlchemy" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'PostgreSQL', percent: 85, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/postgresql.svg' : window.location.origin + '/src/assets/postgresql.svg'} alt="PostgreSQL" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
+  { name: 'Database Design', percent: 80, icon: <img src={process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/src/assets/database.svg' : window.location.origin + '/src/assets/database.svg'} alt="Database Design" className="tech-img" width="48" height="48" style={{minWidth:48,minHeight:48}} />, color: 'green' },
 ];
 
 const achievements = [
