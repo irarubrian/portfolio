@@ -35,19 +35,17 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
 
   return (
     <nav className="navbar">
-      {/* Hamburger icon - only visible on mobile */}
-      {isMobile && (
-        <button
-          className="nav-hamburger"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          onClick={handleMenuToggle}
-          type="button"
-          style={{ zIndex: 106 }}
-        >
-          {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
-        </button>
-      )}
+      {/* Hamburger icon - always rendered, but only visible on mobile via CSS */}
+      <button
+        className="nav-hamburger"
+        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={menuOpen}
+        onClick={handleMenuToggle}
+        type="button"
+        style={{ zIndex: 106, display: isMobile ? 'block' : 'none' }}
+      >
+        {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
+      </button>
 
       {/* Hamburger menu overlay for mobile */}
       {menuOpen && isMobile && (
@@ -55,7 +53,9 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
       )}
 
       {/* Navigation menu - always visible on desktop, conditionally on mobile */}
-      <ul className={`nav-menu${menuOpen ? ' open' : ''}`}>
+      <ul className={`nav-menu${menuOpen ? ' open' : ''}`}
+        style={{ display: isMobile ? (menuOpen ? 'flex' : 'none') : 'flex' }}
+      >
         <li><NavLink to="/" exact="true" activeclassname="active" onClick={handleLinkClick}>Home</NavLink></li>
         <li><NavLink to="/about" activeclassname="active" onClick={handleLinkClick}>About Me</NavLink></li>
         <li><NavLink to="/services" activeclassname="active" onClick={handleLinkClick}>Services</NavLink></li>
