@@ -8,7 +8,6 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Project from './components/Project';
 
-
 import './App.css';
 
 const App = () => {
@@ -21,8 +20,10 @@ const App = () => {
   return (
     <div className={darkMode ? 'app dark-mode' : 'app'}>
       <Router>
-        <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-        
+        {/* Show Navbar (hamburger only) on desktop, hide on mobile */}
+        <div className="navbar-desktop">
+          <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+        </div>
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/about" element={<About />} />
@@ -31,7 +32,6 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
         </Routes>
         
-      
       </Router>
     </div>
   );

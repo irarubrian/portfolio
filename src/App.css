@@ -75,6 +75,15 @@ body.dark {
   color: #fff;
 }
 
+.navbar-desktop {
+  display: block;
+}
+@media (max-width: 768px) {
+  .navbar-desktop {
+    display: none !important;
+  }
+}
+
 /* === HERO CONTAINER === */
 .hero {
   min-height: 100vh;
@@ -899,4 +908,106 @@ footer {
 @keyframes fadeInModal {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* Ensure footer always at the bottom, single column */
+.main-footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: rgba(24, 31, 42, 0.95);
+  color: #93c5fd;
+  border-top: 4px solid #2563eb;
+  text-align: center;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+}
+.footer-content {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.footer-link {
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 1.08rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-link:hover {
+  color: #2563eb;
+}
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  color: #fff;
+  font-size: 1.05rem;
+}
+.footer-contact a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+}
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.footer-social a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  background: rgba(37,99,235,0.10);
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  transition: background 0.2s, color 0.2s;
+}
+.footer-social a:hover {
+  background: #2563eb;
+  color: #fff;
+}
+.footer-copy {
+  color: #93c5fd;
+  font-size: 0.95rem;
+  margin-top: 1.5rem;
+}
+@media (max-width: 600px) {
+  .footer-content {
+    max-width: 100%;
+    padding: 0;
+  }
+  .main-footer {
+    padding: 1.5rem 0.5rem 1rem 0.5rem;
+  }
+  .footer-social {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+}
+
+.tech-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
 }
