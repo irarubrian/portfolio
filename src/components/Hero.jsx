@@ -393,6 +393,36 @@ const Hero = () => {
           position: relative;
           padding-top: 7rem;
         }
+        @media (max-width: 768px) {
+          .logo-container {
+            width: 70px;
+            height: 70px;
+            top: 1rem;
+            right: 1rem;
+          }
+          .hero-section {
+            padding-top: 8.5rem;
+          }
+          .profile-image-wrapper {
+            width: 140px !important;
+            height: 140px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .logo-container {
+            width: 48px;
+            height: 48px;
+            top: 0.5rem;
+            right: 0.5rem;
+          }
+          .hero-section {
+            padding-top: 9.5rem;
+          }
+          .profile-image-wrapper {
+            width: 110px !important;
+            height: 110px !important;
+          }
+        }
 
         .hero-content {
           padding-top: 6rem;
@@ -711,37 +741,6 @@ const Hero = () => {
         html, body, #root {
           max-width: 100vw;
           overflow-x: hidden;
-        }
-
-        @media (max-width: 768px) {
-          .logo-container {
-            width: 90px;
-            height: 90px;
-            top: 1rem;
-            right: 1rem;
-          }
-          .hero-section {
-            padding-top: 8.5rem;
-          }
-          .profile-image-wrapper {
-            width: 120px !important;
-            height: 120px !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .logo-container {
-            width: 64px;
-            height: 64px;
-            top: 0.5rem;
-            right: 0.5rem;
-          }
-          .hero-section {
-            padding-top: 9.5rem;
-          }
-          .profile-image-wrapper {
-            width: 90px !important;
-            height: 90px !important;
-          }
         }
       `}</style>
     </section>

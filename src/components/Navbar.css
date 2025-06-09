@@ -67,15 +67,6 @@
   background: #1d4ed8;
 }
 
-.nav-overlay {
-  display: block;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(16,24,40,0.55);
-  z-index: 102;
-  transition: opacity 0.2s;
-}
-
 @media (max-width: 900px) {
   .navbar {
     margin: 20px 20px;
@@ -92,6 +83,7 @@
   }
   .nav-hamburger {
     display: block;
+    z-index: 103;
   }
   .nav-menu {
     position: fixed;
@@ -109,7 +101,7 @@
     border-radius: 0 0 0 0;
     display: none;
     gap: 2rem;
-    z-index: 101;
+    z-index: 104;
     transition: right 0.2s;
   }
   .nav-menu.open {
@@ -136,25 +128,9 @@
   }
 }
 
-@keyframes slideIn {
-  from { opacity: 0; right: -100vw; }
-  to { opacity: 1; right: 0; }
-}
-
 @media (min-width: 769px) {
   .nav-menu {
-    display: flex !important;
-    position: static;
-    flex-direction: row;
-    background: none;
-    color: inherit;
-    box-shadow: none;
-    border-radius: 0;
-    padding: 0;
-    width: auto;
-    gap: 60px;
-    align-items: center;
-    height: auto;
+    display: none !important;
   }
   .nav-hamburger {
     display: none;
@@ -165,6 +141,20 @@
   .nav-mobile-toggle {
     display: none;
   }
+}
+
+.nav-overlay {
+  display: block;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(16,24,40,0.55);
+  z-index: 102;
+  transition: opacity 0.2s;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; right: -100vw; }
+  to { opacity: 1; right: 0; }
 }
 
 .nav-connect{
