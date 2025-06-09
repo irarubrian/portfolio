@@ -21,13 +21,14 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
 
   return (
     <nav className="navbar">
+      {/* Hamburger icon always visible on mobile */}
       <button
         className="nav-hamburger"
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={menuOpen}
         onClick={handleMenuToggle}
         type="button"
-        style={{ zIndex: 106 }}
+        style={{ zIndex: 106, display: 'block' }}
       >
         {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
       </button>
