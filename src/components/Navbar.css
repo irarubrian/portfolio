@@ -23,7 +23,7 @@ body, html {
 .nav-hamburger {
   display: block !important;
   z-index: 106;
-  background: none;
+  background: #fff;
   border: none;
   cursor: pointer;
   color: #2563eb;
@@ -32,6 +32,10 @@ body, html {
   position: fixed;
   top: 20px;
   right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .nav-menu {
@@ -117,13 +121,6 @@ body, html {
   }
   .nav-hamburger {
     display: block !important;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 106;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
   .nav-menu {
     display: none !important;
