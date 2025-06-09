@@ -26,8 +26,12 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
 
   return (
     <nav className="navbar">
-      {/* SVG Logo/Brand - always top right, responsive */}
-      {/* Logo removed as requested */}
+      {/* SVG Logo/Brand - always top right, responsive, links to contact */}
+      {darkMode ? null : (
+        <a href="#contact" className="nav-logo" style={{position: 'absolute', top: 12, right: 16, zIndex: 120}} aria-label="Contact">
+          <img src={import.meta.env.BASE_URL + 'src/assets/react.svg'} alt="Brian Iraru Logo" style={{width: 40, height: 40, minWidth: 32, minHeight: 32, maxWidth: 56, maxHeight: 56}} />
+        </a>
+      )}
 
       {/* Hamburger Button - Mobile Only */}
       {isMobile && (
@@ -41,20 +45,24 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
       )}
 
       {/* Navigation Menu */}
-      <div className={`nav-links ${isOpen ? 'active' : ''}`}>
+      <div className={`nav-links ${isOpen ? 'active' : ''}`}
+        style={{ background: darkMode ? '#222' : '#fff', color: darkMode ? '#f4f4f4' : '#222' }}
+      >
         <NavLink to="/" end activeclassname="active" onClick={closeMenu}>Home</NavLink>
         <NavLink to="/about" activeclassname="active" onClick={closeMenu}>About</NavLink>
         <NavLink to="/services" activeclassname="active" onClick={closeMenu}>Services</NavLink>
         <NavLink to="/portfolio" activeclassname="active" onClick={closeMenu}>Projects</NavLink>
         <NavLink to="/contact" activeclassname="active" onClick={closeMenu}>Contact</NavLink>
-        {/* Quick Links (for About page or global use) */}
-        <div className="quick-links" style={{display: isMobile ? 'block' : 'none', marginTop: '2rem'}}>
-          <span style={{fontWeight: 600, fontSize: '1rem', marginBottom: 8, display: 'block'}}>Quick Links</span>
-          <NavLink to="/" onClick={closeMenu}>Home</NavLink>
-          <NavLink to="/about" onClick={closeMenu}>About</NavLink>
-          <NavLink to="/portfolio" onClick={closeMenu}>Projects</NavLink>
-          <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
-        </div>
+        {/* Quick Links - always visible in mobile menu, visible in desktop if desired */}
+        {isMobile && (
+          <div className="quick-links" style={{marginTop: '2rem'}}>
+            <span style={{fontWeight: 600, fontSize: '1rem', marginBottom: 8, display: 'block'}}>Quick Links</span>
+            <NavLink to="/" onClick={closeMenu}>Home</NavLink>
+            <NavLink to="/about" onClick={closeMenu}>About</NavLink>
+            <NavLink to="/portfolio" onClick={closeMenu}>Projects</NavLink>
+            <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
+          </div>
+        )}
       </div>
 
       {/* Dark Mode Toggle - works everywhere */}
@@ -62,6 +70,7 @@ const Navbar = ({ toggleDarkMode, darkMode }) => {
         className="dark-mode-toggle"
         onClick={toggleDarkMode}
         aria-label="Toggle dark mode"
+        style={{ color: darkMode ? '#f4f4f4' : '#222' }}
       >
         {darkMode ? '☀️ Light' : '🌙 Dark'}
       </button>
