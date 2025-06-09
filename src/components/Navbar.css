@@ -5,6 +5,14 @@
   margin: 20px 20px;
   position: relative;
   z-index: 100;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body, html {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .nav-logo {
@@ -14,13 +22,16 @@
 
 .nav-hamburger {
   display: block !important;
-  z-index: 103;
+  z-index: 106;
   background: none;
   border: none;
   cursor: pointer;
   color: #2563eb;
   padding: 0.5rem;
   margin-left: 1rem;
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
 .nav-menu {
@@ -109,7 +120,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 105;
+    z-index: 106;
     background: #fff;
     border-radius: 50%;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
