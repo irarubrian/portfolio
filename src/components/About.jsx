@@ -4,9 +4,6 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaUser, FaGraduationCap, FaBriefca
 import { SiFlask, SiTailwindcss } from 'react-icons/si';
 
 const getAssetPath = (filename) => {
-  if (window.location.origin.includes('vercel') || window.location.hostname !== 'localhost') {
-    return `/src/assets/${filename}`;
-  }
   return `/src/assets/${filename}`;
 };
 

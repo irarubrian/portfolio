@@ -1,13 +1,14 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaInstagram, FaTwitter, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
   <div className="footer-content">
     <div className="footer-links">
-      <a href="/" className="footer-link">Home</a>
-      <a href="/about" className="footer-link">About Me</a>
-      <a href="/portfolio" className="footer-link">Projects</a>
-      <a href="/contact" className="footer-link">Contact</a>
+      <Link to="/" className="footer-link">Home</Link>
+      <Link to="/about" className="footer-link">About Me</Link>
+      <Link to="/portfolio" className="footer-link">Projects</Link>
+      <Link to="/contact" className="footer-link">Contact</Link>
     </div>
     <div className="footer-contact">
       <div><FaEnvelope /> <a href="mailto:brian.o.iraru@gmail.com">brian.o.iraru@gmail.com</a></div>
