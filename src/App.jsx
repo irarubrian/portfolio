@@ -6,6 +6,7 @@ import About from './components/About';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Project from './components/Project';
+import Footer from './components/Footer.jsx';
 import './App.css';
 import './components/Navbar.css';
 
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/portfolio" element={<Project />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+        <Footer darkMode={darkMode} />
       </Router>
     </div>
   );
