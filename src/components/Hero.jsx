@@ -107,6 +107,9 @@ const Hero = () => {
               height="100%" 
               viewBox="0 0 140 140"
               preserveAspectRatio="xMidYMid meet"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="Rotating developer logo text"
+              role="img"
             >
               <defs>
                 <path 
@@ -122,7 +125,7 @@ const Hero = () => {
                 letterSpacing="2"
               >
                 <textPath 
-                  xlinkHref="#circlePath" 
+                  href="#circlePath" 
                   startOffset="0"
                   textAnchor="start"
                   dominantBaseline="middle"
@@ -130,6 +133,7 @@ const Hero = () => {
                   • SOFTWARE ENGINEER • FULL STACK DEVELOPER • HIRE ME • 
                 </textPath>
               </text>
+              <desc>Animated circular text: SOFTWARE ENGINEER • FULL STACK DEVELOPER • HIRE ME •</desc>
             </svg>
           </motion.div>
         </motion.a>

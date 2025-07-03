@@ -5,7 +5,7 @@ const projects = [
 		name: 'Weather App Live',
 		link: 'https://weather-a-pp-psi.vercel.app/',
 		description:
-			'A full-stack weather application built using JavaScript, HTML, CSS, and a public weather API. Features include city search, live temperature, humidity, wind speed, and a responsive UI. The app demonstrates robust API integration, asynchronous data handling, and mobile-first design. Deployed on Vercel for instant access on any device, it includes strong error handling for invalid locations, loading states, and a clean, modern interface. All navigation and API requests are handled in a way that prevents reloads or 404 errors on any device. This project highlights my ability to build production-ready, user-centric web applications with a focus on usability, reliability, and performance.',
+			'A weather application built using JavaScript, HTML, CSS, and a public weather API. Features include city search, live temperature, humidity, wind speed, and a responsive UI. The app demonstrates robust API integration, asynchronous data handling, and mobile-first design. Deployed on Vercel for instant access on any device, it includes strong error handling for invalid locations, loading states, and a clean, modern interface. All navigation and API requests are handled in a way that prevents reloads or 404 errors on any device. This project highlights my ability to build production-ready, user-centric web applications with a focus on usability, reliability, and performance.',
 	},
 	{
 		name: 'Fashion Design Frontend',

@@ -59,8 +59,8 @@ const techSkills = [
 
 const achievements = [
   { title: '7+ months', desc: 'Professional Development Experience' },
-  { title: '25+', desc: 'Projects Completed' },
-  { title: '10+', desc: 'Satisfied Clients' },
+  { title: '10+', desc: 'Projects Completed' },
+  { title: '5+', desc: 'Satisfied Clients' },
   { title: '12+', desc: 'Open Source Contributions' },
 ];
 
