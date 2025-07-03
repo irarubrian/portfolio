@@ -992,6 +992,14 @@ footer {
     padding: 1.2rem 0.5rem 0.5rem 0.5rem;
   }
 }
+
+/* Responsive images and SVGs */
+img, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 .tech-img {
   width: 48px !important;
   height: 48px !important;

@@ -336,62 +336,59 @@ const Services = () => {
 				}
 				.services-grid {
 					display: grid;
-					grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-					gap: 2.5rem;
-					max-width: 1280px;
+					grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+					gap: 30px;
+					max-width: 1200px;
 					margin: 0 auto;
 					padding: 0 20px;
 					box-sizing: border-box;
 					width: 100%;
 				}
 				.service-card {
-					background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
-					border-radius: 18px;
-					padding: 2.5rem 2rem 2rem 2rem;
-					box-shadow: 0 8px 32px rgba(37,99,235,0.10);
-					border: 1.5px solid #c7d2fe;
+					background: #f7faff;
+					border-radius: 10px;
+					padding: 30px;
+					box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+					transition: transform 0.3s ease, box-shadow 0.3s ease;
 					display: flex;
 					flex-direction: column;
-					align-items: flex-start;
-					transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+					height: 100%;
 					min-width: 0;
 					word-break: break-word;
+					border-top: 6px solid #2563eb22;
 				}
 				.service-card:hover {
-					transform: translateY(-8px) scale(1.03);
-					box-shadow: 0 16px 40px rgba(37,99,235,0.18);
-					border-color: #6366f1;
-					background: linear-gradient(135deg, #e0e7ff 60%, #f8fafc 100%);
-				}
-				.service-icon-container {
-					font-size: 2.5rem;
-					width: 64px;
-					height: 64px;
-					border-radius: 16px;
-					color: #fff;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					margin-bottom: 1.2rem;
-					box-shadow: 0 4px 12px rgba(99,102,241,0.12);
+					transform: translateY(-10px);
+					box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 				}
 				.service-card h3 {
-					font-size: 1.35rem;
-					margin-bottom: 1.1rem;
-					color: #3730a3;
-					font-weight: 800;
-					letter-spacing: 0.5px;
+					font-size: 1.5rem;
+					margin-bottom: 15px;
+					color: #2c3e50;
 				}
 				.service-card ul {
-					margin-bottom: 1.2rem;
+					margin-bottom: 20px;
 					padding-left: 1.2rem;
 					list-style: disc inside;
 				}
 				.service-card li {
 					margin-bottom: 0.7rem;
-					color: #334155;
+					color: #222;
 					font-size: 1.08rem;
 					line-height: 1.6;
+				}
+				.service-icon-container {
+					font-size: 2.7rem;
+					min-width: 56px;
+					min-height: 56px;
+					border-radius: 50%;
+					background: #2563eb;
+					color: #fff;
+					box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin-bottom: 1.5rem;
 				}
 				.card-footer {
 					display: flex;
@@ -414,7 +411,7 @@ const Services = () => {
 					color: inherit;
 				}
 				.learn-more-btn:hover {
-					background: #e0e7ff;
+					background: rgba(0, 0, 0, 0.03);
 				}
 				.contact-btn {
 					border: none;
@@ -422,8 +419,10 @@ const Services = () => {
 					box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 				}
 				.contact-btn:hover {
-					filter: brightness(1.1);
-					box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+					filter: brightness(1.08);
+					box-shadow: 0 6px 18px rgba(37,99,235,0.18);
+					transform: scale(1.04);
+					background: linear-gradient(90deg, #111827, #2563eb);
 				}
 				.service-modal-overlay {
 					position: fixed;

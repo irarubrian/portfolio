@@ -42,19 +42,19 @@ const softSkills = [
 ];
 
 const techSkills = [
-  { name: 'HTML', percent: 90, icon: <img src={html5Logo} alt="HTML5" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'CSS', percent: 92, icon: <img src={css3Logo} alt="CSS3" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'GitHub', percent: 80, icon: <img src={githubLogo} alt="GitHub" className="tech-img" width="48" height="48" />, color: 'green' },
+  { name: 'HTML', percent: 90, icon: <img src={html5Logo} alt="HTML5" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'CSS', percent: 92, icon: <img src={css3Logo} alt="CSS3" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'GitHub', percent: 80, icon: <img src={githubLogo} alt="GitHub" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
   { name: 'Agile', percent: 88, icon: <span className="tech-img" style={{fontWeight:'bold',fontSize:'2rem',color:'green',minWidth:48,minHeight:48,display:'inline-block',textAlign:'center',lineHeight:'48px'}}>A</span>, color: 'green' },
-  { name: 'Figma', percent: 85, icon: <img src={figmaLogo} alt="Figma" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'JavaScript', percent: 75, icon: <img src={javascriptLogo} alt="JavaScript" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'React.js', percent: 80, icon: <img src={reactLogo} alt="React" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'Tailwind CSS', percent: 80, icon: <img src={tailwindLogo} alt="Tailwind CSS" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'Python', percent: 85, icon: <img src={pythonLogo} alt="Python" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'Flask', percent: 85, icon: <img src={flaskLogo} alt="Flask" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'SQLAlchemy', percent: 82, icon: <img src={sqlalchemyLogo} alt="SQLAlchemy" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'PostgreSQL', percent: 85, icon: <img src={postgresqlLogo} alt="PostgreSQL" className="tech-img" width="48" height="48" />, color: 'green' },
-  { name: 'Database Design', percent: 80, icon: <img src={databaseLogo} alt="Database Design" className="tech-img" width="48" height="48" />, color: 'green' },
+  { name: 'Figma', percent: 85, icon: <img src={figmaLogo} alt="Figma" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'JavaScript', percent: 75, icon: <img src={javascriptLogo} alt="JavaScript" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'React.js', percent: 80, icon: <img src={reactLogo} alt="React" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'Tailwind CSS', percent: 80, icon: <img src={tailwindLogo} alt="Tailwind CSS" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'Python', percent: 85, icon: <img src={pythonLogo} alt="Python" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'Flask', percent: 85, icon: <img src={flaskLogo} alt="Flask" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'SQLAlchemy', percent: 82, icon: <img src={sqlalchemyLogo} alt="SQLAlchemy" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'PostgreSQL', percent: 85, icon: <img src={postgresqlLogo} alt="PostgreSQL" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
+  { name: 'Database Design', percent: 80, icon: <img src={databaseLogo} alt="Database Design" className="tech-img" width="48" height="48" style={{maxWidth: '100%', height: 'auto', display: 'block'}} />, color: 'green' },
 ];
 
 const achievements = [
@@ -274,34 +274,6 @@ const About = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Footer Section */}
-      <footer className="about-footer">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h3>Quick Links</h3>
-            <nav>
-              <Link to="/">Home</Link>
-              <Link to="/about">About Me</Link>
-              <Link to="/portfolio">Projects</Link>
-              <Link to="/contact">Get in Touch</Link>
-            </nav>
-          </div>
-
-          <div className="footer-section">
-            <h3>Contact Info</h3>
-            <div className="contact-info">
-              <div><span>Email:</span> <a href="mailto:brian.o.iraru@gmail.com">brian.o.iraru@gmail.com</a></div>
-              <div><span>Phone:</span> <a href="tel:+254743435490">+254 743435490</a></div>
-              <div><span>Location:</span> Nairobi, Kenya</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Brian Iraru. All rights reserved.</p>
-        </div>
-      </footer>
 
       <style jsx>{`
         .about-section {
@@ -549,101 +521,6 @@ const About = () => {
           color: #1a1a1a;
           font-size: 1.1rem;
           font-weight: 500;
-        }
-
-        /* Footer Section */
-        .about-footer {
-          width: 100%;
-          margin-top: 3rem;
-          background: #111827;
-          color: #fff;
-          padding: 2.5rem 1.5rem;
-          border-radius: 12px 12px 0 0;
-        }
-
-        .footer-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
-        }
-
-        .footer-section {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .footer-section h3 {
-          color: #93c5fd;
-          font-size: 1.3rem;
-          margin-bottom: 1.5rem;
-          position: relative;
-          padding-bottom: 0.5rem;
-        }
-
-        .footer-section h3::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 50px;
-          height: 2px;
-          background: #3b82f6;
-        }
-
-        .footer-section nav {
-          display: flex;
-          flex-direction: column;
-          gap: 0.8rem;
-        }
-
-        .footer-section a {
-          color: #e5e7eb;
-          text-decoration: none;
-          font-size: 1.05rem;
-          transition: color 0.2s;
-        }
-
-        .footer-section a:hover {
-          color: #3b82f6;
-        }
-
-        .contact-info {
-          display: flex;
-          flex-direction: column;
-          gap: 0.8rem;
-        }
-
-        .contact-info div {
-          display: flex;
-          gap: 0.5rem;
-        }
-
-        .contact-info span {
-          color: #93c5fd;
-          font-weight: 600;
-        }
-
-        .contact-info a {
-          color: #e5e7eb;
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-
-        .contact-info a:hover {
-          color: #3b82f6;
-          text-decoration: underline;
-        }
-
-        .footer-bottom {
-          max-width: 1200px;
-          margin: 2rem auto 0 auto;
-          padding-top: 1.5rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          text-align: center;
-          color: #9ca3af;
-          font-size: 0.9rem;
         }
 
         /* Responsive Styles */
