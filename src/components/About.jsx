@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaUser, FaGraduationCap, FaBriefcase } from 'react-icons/fa';
 import { SiFlask, SiTailwindcss } from 'react-icons/si';
+import { Link } from 'react-router-dom';
 
 // Import all SVGs directly for robust Vite/React compatibility
 import html5Logo from '../assets/html5.svg';
@@ -280,10 +281,10 @@ const About = () => {
           <div className="footer-section">
             <h3>Quick Links</h3>
             <nav>
-              <a href="/">Home</a>
-              <a href="/about">About Me</a>
-              <a href="/portfolio">Projects</a>
-              <a href="/contact">Get in Touch</a>
+              <Link to="/">Home</Link>
+              <Link to="/about">About Me</Link>
+              <Link to="/portfolio">Projects</Link>
+              <Link to="/contact">Get in Touch</Link>
             </nav>
           </div>
 

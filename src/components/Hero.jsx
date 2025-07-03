@@ -315,10 +315,10 @@ const Hero = () => {
             <div className="footer-column">
               <h3 className="footer-title">Quick Links</h3>
               <nav className="footer-nav">
-                <a href="/" className="footer-link">Home</a>
-                <a href="/about" className="footer-link">About</a>
-                <a href="/portfolio" className="footer-link">Projects</a>
-                <a href="/contact" className="footer-link">Contact</a>
+                <Link to="/" className="footer-link">Home</Link>
+                <Link to="/about" className="footer-link">About</Link>
+                <Link to="/portfolio" className="footer-link">Projects</Link>
+                <Link to="/contact" className="footer-link">Contact</Link>
               </nav>
             </div>
 
