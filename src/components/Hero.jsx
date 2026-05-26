@@ -4,41 +4,43 @@ import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { 
   FaGithub, FaLinkedin, FaEnvelope, FaTwitter, FaArrowDown, 
-  FaCode, FaRocket, FaCloudUploadAlt, FaUsers, FaAward,
-  FaShieldAlt, FaInfinity, FaStar, FaLightbulb, FaTrophy
+  FaCode, FaRocket, FaCloudUploadAlt, FaUsers, 
+  FaStar, FaMobile, FaDatabase, FaCloud, FaLaptopCode,
+  FaMoneyBillWave, FaExchangeAlt
 } from "react-icons/fa";
+import { 
+  SiJavascript, SiHtml5, SiCss3, SiFramer, 
+  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, 
+  SiNodedotjs, SiPython, SiPostgresql, SiMongodb
+} from "react-icons/si";
 import { FiCopy } from "react-icons/fi";
-import { GiStarsStack, GiBrain } from "react-icons/gi";
+import { GiStarsStack } from "react-icons/gi";
+import profileImage from "../assets/profile.jpeg";
 import "./Hero.css";
 
+// Fix: Use FaAws instead of SiAmazonaws
 const techSkills = [
-  { name: 'React.js', percent: 92, color: '#61DAFB' },
-  { name: 'Next.js', percent: 88, color: '#000000' },
-  { name: 'TypeScript', percent: 86, color: '#3178C6' },
-  { name: 'Tailwind CSS', percent: 94, color: '#06B6D4' },
-  { name: 'Node.js', percent: 89, color: '#68A063' },
-  { name: 'Express.js', percent: 85, color: '#000000' },
-  { name: 'Python', percent: 90, color: '#3572A5' },
-  { name: 'FastAPI', percent: 84, color: '#009688' },
-  { name: 'MongoDB', percent: 86, color: '#47A248' },
-  { name: 'PostgreSQL', percent: 88, color: '#336791' },
-  { name: 'AWS', percent: 85, color: '#FF9900' },
-  { name: 'Docker', percent: 83, color: '#2496ED' },
-];
-
-const inspiringQuotes = [
-  { text: "Code is like poetry — elegant solutions to complex problems.", author: "Brian Iraru" },
-  { text: "Building the future, one commit at a time.", author: "Brian Iraru" },
-  { text: "Simplicity is the ultimate sophistication in engineering.", author: "Brian Iraru" },
-  { text: "Great developers don't just write code — they craft experiences.", author: "Brian Iraru" },
-  { text: "Innovation distinguishes between a leader and a follower.", author: "Brian Iraru" },
+  { name: 'JavaScript', percent: 90, color: '#F7DF1E', icon: <SiJavascript /> },
+  { name: 'HTML5', percent: 95, color: '#E44D26', icon: <SiHtml5 /> },
+  { name: 'CSS3', percent: 92, color: '#264DE4', icon: <SiCss3 /> },
+  { name: 'React.js', percent: 92, color: '#61DAFB', icon: <SiReact /> },
+  { name: 'Next.js', percent: 88, color: '#000000', icon: <SiNextdotjs /> },
+  { name: 'TypeScript', percent: 86, color: '#3178C6', icon: <SiTypescript /> },
+  { name: 'Tailwind CSS', percent: 94, color: '#06B6D4', icon: <SiTailwindcss /> },
+  { name: 'Node.js', percent: 89, color: '#68A063', icon: <SiNodedotjs /> },
+  { name: 'Python', percent: 90, color: '#3572A5', icon: <SiPython /> },
+  { name: 'Daraja API', percent: 85, color: '#00B341', icon: <FaMoneyBillWave /> },
+  { name: 'Framer Motion', percent: 88, color: '#0055FF', icon: <SiFramer /> },
+  { name: 'PostgreSQL', percent: 88, color: '#336791', icon: <SiPostgresql /> },
+  { name: 'MongoDB', percent: 86, color: '#47A248', icon: <SiMongodb /> },
+  { name: 'AWS', percent: 85, color: '#FF9900', icon: <FaCloud /> },
+  { name: 'REST APIs', percent: 90, color: '#00ACC1', icon: <FaExchangeAlt /> },
 ];
 
 const Hero = () => {
   const [isHoveringLogo, setIsHoveringLogo] = useState(false);
   const [copied, setCopied] = useState(false);
   const [activeSkill, setActiveSkill] = useState(null);
-  const [activeQuoteIndex, setActiveQuoteIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const controls = useAnimation();
   const containerRef = useRef(null);
@@ -52,13 +54,6 @@ const Hero = () => {
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveQuoteIndex((prev) => (prev + 1) % inspiringQuotes.length);
-    }, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -166,60 +161,25 @@ const Hero = () => {
             >
               <div className="hero-profile-overlay" />
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src={profileImage}
                 alt="Brian Iraru"
                 className="hero-profile-img"
               />
               <div className="hero-profile-gradient" />
             </motion.div>
           </div>
-
-          {/* Floating Badges */}
-          {techSkills.slice(0, 6).map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                x: index % 2 === 0 ? [0, -10, 0] : [0, 10, 0],
-                y: [0, -5, 0],
-              }}
-              transition={{ 
-                delay: 0.8 + index * 0.15,
-                x: { duration: 4, repeat: Infinity, delay: index },
-                y: { duration: 3, repeat: Infinity, delay: index * 0.5 },
-              }}
-              className="hero-badge"
-              style={{
-                top: index < 3 ? `${5 + index * 12}%` : `${75 + (index - 3) * 8}%`,
-                [index % 2 === 0 ? "left" : "right"]: index < 3 ? "-10%" : "-8%",
-                backgroundColor: `${skill.color}20`,
-                borderColor: `${skill.color}60`,
-                boxShadow: `0 0 15px ${skill.color}30`,
-              }}
-              whileHover={{ scale: 1.15, backgroundColor: `${skill.color}40` }}
-              onMouseEnter={() => setActiveSkill(skill.name)}
-              onMouseLeave={() => setActiveSkill(null)}
-            >
-              <span style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
-                <span style={{ width: "0.375rem", height: "0.375rem", borderRadius: "50%", background: skill.color }} />
-                {skill.name}
-              </span>
-            </motion.div>
-          ))}
         </motion.div>
 
         {/* Welcome Badge */}
         <motion.div variants={itemVariants} className="hero-welcome-badge">
           <span className="hero-welcome-text">
-            ✨ Welcome to my digital universe ✨
+            ✨ Software Engineer | Full Stack Developer ✨
           </span>
         </motion.div>
         
         {/* Main Title */}
         <motion.h1 variants={itemVariants} className="hero-title">
-          <span className="hero-title-prefix">Hi, I'm </span>
+          <span className="hero-title-prefix">I'm </span>
           <motion.span
             className="hero-title-name"
             animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
@@ -234,59 +194,40 @@ const Hero = () => {
         <motion.div variants={itemVariants} className="hero-typing">
           <TypeAnimation
             sequence={[
-              "Creative Technologist", 1200,
-              "Full Stack Architect", 1200,
-              "Problem Solver", 1200,
-              "Innovation Driver", 1200,
-              "Tech Entrepreneur", 1200,
+              "Building digital solutions", 1500,
+              "Creating animations", 1500,
+              "Integrating Daraja API", 1500,
+              "Crafting experiences", 1500,
             ]}
             wrapper="div"
-            speed={40}
+            speed={50}
             deletionSpeed={60}
             repeat={Infinity}
           />
         </motion.div>
 
-        {/* Quote Rotator */}
-        <motion.div variants={itemVariants} className="hero-quote">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeQuoteIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="hero-quote-card"
-            >
-              <p className="hero-quote-text">"{inspiringQuotes[activeQuoteIndex].text}"</p>
-              <p className="hero-quote-author">— {inspiringQuotes[activeQuoteIndex].author}</p>
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Professional Bio */}
+        {/* Short Story / Bio */}
         <motion.div variants={itemVariants} className="hero-bio">
           <motion.p className="hero-bio-text">
-            I craft digital experiences that blend cutting-edge technology with human-centered design. 
-            As a full-stack architect and creative technologist, I transform complex challenges into 
-            elegant, scalable solutions that drive real impact. With expertise across the modern web stack, 
-            I deliver high-performance applications that users love.
+            I'm a software engineer passionate about building web applications that make a difference. 
+            I specialize in React, animations with Framer Motion, and integrating Daraja API for M-Pesa payments. 
+            My goal is to create fast, beautiful, and user-friendly solutions that people love to use.
           </motion.p>
         </motion.div>
 
         {/* Key Stats */}
-        <motion.div variants={itemVariants} style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center", marginTop: "0.5rem" }}>
-          <div style={{ background: "rgba(59,130,246,0.1)", padding: "0.5rem 1rem", borderRadius: "2rem", border: "1px solid rgba(59,130,246,0.2)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <FaTrophy style={{ color: "#f59e0b" }} />
-            <span style={{ fontSize: "0.875rem", color: "#d1d5db" }}>10+ Projects Completed</span>
+        <motion.div variants={itemVariants} className="hero-stats">
+          <div className="hero-stat">
+            <FaCode />
+            <span>15+ Projects</span>
           </div>
-          <div style={{ background: "rgba(59,130,246,0.1)", padding: "0.5rem 1rem", borderRadius: "2rem", border: "1px solid rgba(59,130,246,0.2)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <FaUsers style={{ color: "#10b981" }} />
-            <span style={{ fontSize: "0.875rem", color: "#d1d5db" }}>15+ Happy Clients</span>
+          <div className="hero-stat">
+            <FaUsers />
+            <span>20+ Clients</span>
           </div>
-          <div style={{ background: "rgba(59,130,246,0.1)", padding: "0.5rem 1rem", borderRadius: "2rem", border: "1px solid rgba(59,130,246,0.2)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <FaStar style={{ color: "#fbbf24" }} />
-            <span style={{ fontSize: "0.875rem", color: "#d1d5db" }}>100% Client Satisfaction</span>
+          <div className="hero-stat">
+            <FaStar />
+            <span>100% Satisfaction</span>
           </div>
         </motion.div>
 
@@ -294,9 +235,9 @@ const Hero = () => {
         <motion.div variants={itemVariants} className="hero-skills-section">
           <div className="hero-skills-header">
             <h3 className="hero-skills-title">
-              <GiStarsStack style={{ color: "#60a5fa" }} />
+              <GiStarsStack />
               Technical Arsenal
-              <GiStarsStack style={{ color: "#a78bfa" }} />
+              <GiStarsStack />
             </h3>
             <p className="hero-skills-subtitle">Tools & technologies I master</p>
           </div>
@@ -307,7 +248,7 @@ const Hero = () => {
                 key={skill.name}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 + index * 0.05 }}
+                transition={{ delay: 0.8 + index * 0.03 }}
                 whileHover={{ scale: 1.03, y: -2 }}
                 onMouseEnter={() => setActiveSkill(skill.name)}
                 onMouseLeave={() => setActiveSkill(null)}
@@ -315,8 +256,15 @@ const Hero = () => {
                 style={{ borderColor: `${skill.color}40` }}
               >
                 <div className="hero-skill-header">
-                  <span className="hero-skill-name">{skill.name}</span>
-                  <span className="hero-skill-percent" style={{ color: skill.color }}>{skill.percent}%</span>
+                  <div className="hero-skill-name-wrapper">
+                    <span className="hero-skill-icon" style={{ color: skill.color }}>
+                      {skill.icon}
+                    </span>
+                    <span className="hero-skill-name">{skill.name}</span>
+                  </div>
+                  <span className="hero-skill-percent" style={{ color: skill.color }}>
+                    {skill.percent}%
+                  </span>
                 </div>
                 <div className="hero-skill-bar">
                   <motion.div
@@ -324,7 +272,7 @@ const Hero = () => {
                     style={{ background: skill.color, width: 0 }}
                     whileInView={{ width: `${skill.percent}%` }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.5 + index * 0.05 }}
+                    transition={{ duration: 0.8, delay: 0.5 + index * 0.03 }}
                   />
                 </div>
               </motion.div>
@@ -338,14 +286,8 @@ const Hero = () => {
             <motion.button className="hero-btn-primary">
               <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
                 <FaRocket />
-                Start a Project
+                Hire Me
               </span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.6 }}
-              />
             </motion.button>
           </Link>
 
@@ -362,10 +304,10 @@ const Hero = () => {
         {/* Social Links */}
         <motion.div variants={itemVariants} className="hero-social">
           {[
-            { icon: <FaGithub size={22} />, url: "https://github.com/brianiraru", color: "#ffffff", label: "GitHub" },
-            { icon: <FaLinkedin size={22} />, url: "https://linkedin.com/in/brianiraru", color: "#0a66c2", label: "LinkedIn" },
-            { icon: <FaEnvelope size={22} />, action: handleCopyEmail, color: "#ea4335", label: copied ? "Copied!" : "Email" },
-            { icon: <FaTwitter size={22} />, url: "https://twitter.com/brianiraru", color: "#1d9bf0", label: "Twitter" },
+            { icon: <FaGithub size={20} />, url: "https://github.com/brianiraru", color: "#ffffff", label: "GitHub" },
+            { icon: <FaLinkedin size={20} />, url: "https://linkedin.com/in/brianiraru", color: "#0a66c2", label: "LinkedIn" },
+            { icon: <FaEnvelope size={20} />, action: handleCopyEmail, color: "#ea4335", label: copied ? "Copied!" : "Email" },
+            { icon: <FaTwitter size={20} />, url: "https://twitter.com/brianiraru", color: "#1d9bf0", label: "Twitter" },
           ].map((item, index) => (
             <motion.a
               key={index}
@@ -401,7 +343,7 @@ const Hero = () => {
         whileHover={{ y: 5 }}
         onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
       >
-        <span className="hero-scroll-text">SCROLL</span>
+        <span className="hero-scroll-text">EXPLORE</span>
         <div className="hero-scroll-icon">
           <div className="hero-scroll-dot" />
         </div>
