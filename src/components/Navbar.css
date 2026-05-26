@@ -1,96 +1,505 @@
-/* Base Navbar Styles */
+/* Navbar.css */
+
+/* ========================================
+   NAVBAR CORE STYLES
+   ======================================== */
+
+/* Navbar container */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--navbar-bg);
-  color: var(--navbar-text);
-  position: relative;
-  z-index: 1000;
-}
-
-/* Hamburger Button - Mobile Only */
-.hamburger-btn {
-  display: none;
-  background: transparent;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-/* Navigation Links */
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  color: inherit;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
   transition: all 0.3s ease;
 }
 
-.nav-links a.active {
-  font-weight: bold;
-  text-decoration: underline;
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Dark Mode Toggle */
-.dark-mode-toggle {
+.dark .navbar-scrolled {
+  background: rgba(17, 24, 39, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Navbar container inner */
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .navbar-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar-container {
+    padding: 0 2rem;
+  }
+}
+
+/* Navbar content wrapper */
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-content {
+    height: 5rem;
+  }
+}
+
+/* ========================================
+   LOGO SECTION
+   ======================================== */
+
+.logo-container {
+  flex-shrink: 0;
+}
+
+/* ========================================
+   DESKTOP NAVIGATION
+   ======================================== */
+
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav {
+    gap: 0.5rem;
+  }
+}
+
+/* Navigation links */
+.nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .nav-link {
+    font-size: 1rem;
+  }
+}
+
+/* Light mode styles */
+.nav-link-light {
+  color: #374151;
+}
+
+.nav-link-light:hover {
+  color: #2563eb;
+  background-color: #f3f4f6;
+}
+
+.nav-link-active-light {
+  color: #2563eb;
+  background-color: #eff6ff;
+}
+
+/* Dark mode styles */
+.dark .nav-link-dark {
+  color: #d1d5db;
+}
+
+.dark .nav-link-dark:hover {
+  color: #60a5fa;
+  background-color: #1f2937;
+}
+
+.dark .nav-link-active-dark {
+  color: #60a5fa;
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+/* Link hover underline effect */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-link:hover::after {
+  width: calc(100% - 2rem);
+}
+
+.nav-link-active-light::after,
+.dark .nav-link-active-dark::after {
+  width: calc(100% - 2rem);
+}
+
+/* ========================================
+   RIGHT SECTION (Actions)
+   ======================================== */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
   background: transparent;
   border: none;
-  color: inherit;
   cursor: pointer;
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Mobile Overlay */
-.mobile-overlay {
+.theme-toggle-light {
+  color: #374151;
+}
+
+.theme-toggle-light:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .theme-toggle-dark {
+  color: #d1d5db;
+}
+
+.dark .theme-toggle-dark:hover {
+  background-color: #1f2937;
+}
+
+.theme-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+.mobile-menu-btn-light {
+  color: #374151;
+}
+
+.mobile-menu-btn-light:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .mobile-menu-btn-dark {
+  color: #d1d5db;
+}
+
+.dark .mobile-menu-btn-dark:hover {
+  background-color: #1f2937;
+}
+
+/* ========================================
+   MOBILE MENU
+   ======================================== */
+
+/* Backdrop overlay */
+.mobile-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  backdrop-filter: blur(4px);
+  z-index: 40;
 }
 
-/* Mobile Styles */
-@media (max-width: 899px) {
-  .hamburger-btn {
-    display: block;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    width: 70%;
-    max-width: 300px;
-    background-color: var(--navbar-bg);
-    flex-direction: column;
-    padding: 5rem 2rem 2rem;
-    transition: right 0.3s ease;
-    z-index: 1000;
-  }
-
-  .nav-links.active {
-    right: 0;
-  }
-
-  .dark-mode-toggle {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1001;
+@media (min-width: 768px) {
+  .mobile-backdrop {
+    display: none;
   }
 }
-/* Prevent horizontal scroll */
-html, body {
-  max-width: 100vw;
-  overflow-x: hidden;
+
+/* Mobile drawer */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 16rem;
+  height: 100%;
+  z-index: 50;
+  padding: 1.5rem;
+  padding-top: 5rem;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 768px) {
+  .mobile-drawer {
+    display: none;
+  }
+}
+
+.mobile-drawer-light {
+  background-color: #ffffff;
+}
+
+.dark .mobile-drawer-dark {
+  background-color: #111827;
+}
+
+/* Mobile navigation links container */
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Mobile nav link styles */
+.mobile-nav-link {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: block;
+}
+
+.mobile-nav-link-light {
+  color: #374151;
+}
+
+.mobile-nav-link-light:hover {
+  color: #2563eb;
+  background-color: #f3f4f6;
+}
+
+.mobile-nav-link-active-light {
+  color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.dark .mobile-nav-link-dark {
+  color: #d1d5db;
+}
+
+.dark .mobile-nav-link-dark:hover {
+  color: #60a5fa;
+  background-color: #1f2937;
+}
+
+.dark .mobile-nav-link-active-dark {
+  color: #60a5fa;
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+/* ========================================
+   SPACER (prevents content hiding under navbar)
+   ======================================== */
+
+.navbar-spacer {
+  height: 4rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-spacer {
+    height: 5rem;
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Transition utilities */
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hide scrollbar when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Focus styles for accessibility */
+.nav-link:focus-visible,
+.theme-toggle:focus-visible,
+.mobile-menu-btn:focus-visible,
+.mobile-nav-link:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   DARK MODE SPECIFIC OVERRIDES
+   ======================================== */
+
+.dark .nav-link::after {
+  background: linear-gradient(90deg, #60a5fa, #93c5fd);
+}
+
+/* Optional: Glass morphism effect for modern look */
+.navbar-glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.dark .navbar-glass {
+  background: rgba(17, 24, 39, 0.8);
+}
+
+/* Optional: Gradient border effect */
+.navbar-gradient-border {
+  position: relative;
+}
+
+.navbar-gradient-border::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #2563eb, #60a5fa, #2563eb, transparent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.navbar-gradient-border:hover::before {
+  transform: scaleX(1);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 640px) {
+  .nav-link {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .theme-toggle svg,
+  .mobile-menu-btn svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .desktop-nav {
+    gap: 0.125rem;
+  }
+  
+  .nav-link {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .navbar {
+    position: static;
+    background: white;
+    box-shadow: none;
+  }
+  
+  .theme-toggle,
+  .mobile-menu-btn,
+  .mobile-backdrop,
+  .mobile-drawer {
+    display: none;
+  }
+  
+  .desktop-nav {
+    display: flex;
+  }
+  
+  .nav-link {
+    color: black !important;
+  }
 }

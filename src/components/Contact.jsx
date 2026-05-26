@@ -3,6 +3,7 @@
 // export default Contact;
 import React, { useRef, useState } from 'react';
 import emailjs from 'emailjs-com';
+import './Contact.css'
 
 const Contact = () => {
   const form = useRef();
@@ -84,7 +85,7 @@ const Contact = () => {
         <p className="status success">✅ Message sent successfully!</p>
       )}
       {status === 'error' && (
-        <p className="status error">❌ Failed to send message. Please try again.</p>
+        <p className="status error"> Failed to send message. Please try again.</p>
       )}
     </div>
   );

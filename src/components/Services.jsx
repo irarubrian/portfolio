@@ -1,633 +1,417 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCode, FaDatabase, FaUsers, FaServer, FaLaptopCode, FaGlobe } from 'react-icons/fa';
+import {
+  FaCode, FaDatabase, FaUsers, FaServer, FaLaptopCode, FaGlobe,
+  FaShieldAlt, FaArrowRight, FaTimes, FaRocket, FaCloudUploadAlt,
+  FaChartLine, FaLightbulb, FaClock, FaMoneyBillWave
+} from 'react-icons/fa';
+import { FiExternalLink } from 'react-icons/fi';
+import './Services.css';
 
 const servicesData = [
-	{
-		title: 'Consultation & Code Reviews',
-		icon: <FaCode className="service-icon" />,
-		description: [
-			'Personalized mentorship for junior developers focusing on React Hooks, Flask routing patterns, and SQLAlchemy ORM best practices',
-			'Comprehensive code reviews with actionable feedback on architecture, performance, and maintainability',
-			'Implementation guidance for scalable, secure applications following industry standards',
-			'Technical debt assessment and refactoring strategies',
-		],
-		more: 'I offer tailored one-on-one mentoring sessions, detailed code walkthroughs, and constructive feedback to accelerate your development skills. My approach combines practical examples with theoretical foundations, helping you understand not just how to write code but how to architect solutions. Sessions can cover specific projects, interview preparation, or general skill development. I provide documentation templates, code samples, and follow-up resources to reinforce learning.',
-		color: '#6366f1',
-	},
-	{
-		title: 'Data-Driven Applications',
-		icon: <FaDatabase className="service-icon" />,
-		description: [
-			'Relational database modeling with SQLAlchemy including complex relationships and inheritance patterns',
-			'Advanced SQL query optimization and indexing strategies for high-performance applications',
-			'Real-time data applications using WebSockets and server-sent events',
-			'Data migration planning and execution between different database systems',
-		],
-		more: 'I specialize in designing robust, scalable data architectures that evolve with your business needs. From initial schema design to complex query optimization, I ensure your data layer is both performant and maintainable. My expertise includes implementing real-time features like collaborative editing, live dashboards, and notification systems that dramatically improve user engagement. I also help teams establish proper data access patterns, caching strategies, and monitoring solutions.',
-		color: '#10b981',
-	},
-	{
-		title: 'Project Collaboration',
-		icon: <FaUsers className="service-icon" />,
-		description: [
-			'Git version control strategies including branching models and conflict resolution',
-			'GitHub/GitLab workflows with automated testing and deployment pipelines',
-			'Agile development practices and effective team collaboration techniques',
-			'Code review best practices and establishing team coding standards',
-		],
-		more: 'With extensive experience in agile environments, I help development teams establish efficient collaboration workflows. This includes implementing proper Git strategies, setting up CI/CD pipelines, and establishing effective code review processes. I can help your team transition to trunk-based development, implement feature flags, or adopt modern DevOps practices. My goal is to help teams reduce friction in their development process while maintaining high code quality standards.',
-		color: '#3b82f6',
-	},
-	{
-		title: 'API Development',
-		icon: <FaServer className="service-icon" />,
-		description: [
-			'Design and implementation of RESTful APIs with Flask including proper versioning',
-			'Authentication strategies (JWT, OAuth, session-based) and authorization patterns',
-			'Third-party API integrations with payment processors, social platforms, and SaaS products',
-			'API documentation using OpenAPI/Swagger and interactive documentation portals',
-		],
-		more: 'I build secure, well-documented APIs with proper authentication, rate limiting, and comprehensive error handling. Whether you need internal microservices or public-facing endpoints, I ensure reliability and scalability. My API development includes thorough documentation, client SDK generation, and testing strategies. I have particular expertise in integrating with third-party services like Stripe, Twilio, and OAuth providers, handling the complexities of webhooks, retry logic, and data synchronization.',
-		color: '#f59e0b',
-	},
-	{
-		title: 'Full-Stack Development',
-		icon: <FaLaptopCode className="service-icon" />,
-		description: [
-			'End-to-end application development with React frontends and Flask backends',
-			'Feature implementation from database schema to UI components',
-			'Performance optimization across the entire stack',
-			'Deployment strategies for various environments (cloud, hybrid, on-premise)',
-		],
-		more: 'From concept to deployment, I deliver complete solutions with React frontends and Flask backends. My full-stack approach ensures seamless integration between components, resulting in performant, maintainable applications. I handle everything from initial architecture decisions to production monitoring. Projects typically include containerization (Docker), infrastructure as code, and observability setup. I specialize in bridging the gap between frontend and backend concerns to deliver cohesive user experiences.',
-		color: '#ec4899',
-	},
-	{
-		title: 'Web Development',
-		icon: <FaGlobe className="service-icon" />,
-		description: [
-			'Responsive frontend development with modern CSS and layout techniques',
-			'Backend development with proper authentication flows and business logic',
-			'Performance optimization including lazy loading, code splitting, and caching',
-			'Accessibility compliance and internationalization support',
-		],
-		more: 'I create modern, accessible websites with responsive designs that work across all devices. My frontend work focuses on creating intuitive user interfaces with attention to performance and accessibility. Backend development emphasizes clean architecture, proper authentication flows, and efficient data handling. I implement monitoring, error tracking, and analytics to ensure your web application remains healthy and measurable. My solutions include progressive enhancement strategies and core web vital optimizations.',
-		color: '#8b5cf6',
-	},
+  {
+    title: 'Consultation & Code Reviews',
+    icon: <FaCode />,
+    category: 'consulting',
+    description: [
+      'Personalized mentorship for junior developers',
+      'Comprehensive code reviews with actionable feedback',
+      'Implementation guidance for scalable applications',
+      'Technical debt assessment and refactoring strategies',
+      'Best practices implementation and team training'
+    ],
+    more: 'I offer tailored one-on-one mentoring sessions, detailed code walkthroughs, and constructive feedback to accelerate your development skills. My approach combines practical examples with theoretical foundations, ensuring your team grows and your codebase improves sustainably.',
+    benefits: ['Faster team growth', 'Higher code quality', 'Reduced technical debt', 'Improved developer confidence'],
+    color: '#6366f1',
+    gradient: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+  },
+  {
+    title: 'Data-Driven Applications',
+    icon: <FaDatabase />,
+    category: 'development',
+    description: [
+      'Relational database modeling with SQLAlchemy',
+      'Advanced SQL query optimization strategies',
+      'Real-time data applications using WebSockets',
+      'Data migration planning and execution',
+      'Business intelligence and analytics integration'
+    ],
+    more: 'I specialize in designing robust, scalable data architectures that evolve with your business needs. From initial schema design to complex query optimization, I ensure your data layer is both performant and maintainable, supporting real-time insights and long-term growth.',
+    benefits: ['Faster data access', 'Scalable architecture', 'Real-time insights', 'Reduced database costs'],
+    color: '#10b981',
+    gradient: 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+  },
+  {
+    title: 'Project Collaboration',
+    icon: <FaUsers />,
+    category: 'consulting',
+    description: [
+      'Git version control strategies & branching models',
+      'GitHub/GitLab CI/CD workflow automation',
+      'Agile & Scrum development practices',
+      'Code review best practices & pull request templates',
+      'Team workflow optimization and documentation'
+    ],
+    more: 'With extensive experience in agile environments, I help development teams establish efficient collaboration workflows. This includes implementing proper Git strategies, automated CI/CD pipelines, and effective code review processes that reduce friction and accelerate delivery.',
+    benefits: ['Streamlined workflows', 'Faster delivery times', 'Better team coordination', 'Reduced merge conflicts'],
+    color: '#3b82f6',
+    gradient: 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)',
+  },
+  {
+    title: 'API Development',
+    icon: <FaServer />,
+    category: 'development',
+    description: [
+      'RESTful API design & implementation (OpenAPI)',
+      'JWT, OAuth2, API key authentication strategies',
+      'Third-party API integrations & webhooks',
+      'API documentation using Swagger/OpenAPI',
+      'API versioning and deprecation strategies'
+    ],
+    more: 'I build secure, well-documented APIs with proper authentication, rate limiting, and comprehensive error handling. Whether you need internal microservices or public-facing endpoints, I ensure reliability, scalability, and seamless integration for your frontend or external consumers.',
+    benefits: ['Secure endpoints', 'Easy integration', 'Comprehensive docs', 'High availability'],
+    color: '#f59e0b',
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)',
+  },
+  {
+    title: 'Full-Stack Development',
+    icon: <FaLaptopCode />,
+    category: 'development',
+    description: [
+      'End-to-end app development (React + Flask/FastAPI)',
+      'Feature implementation from database schema to UI',
+      'Performance optimization across frontend & backend',
+      'Deployment strategies (Docker, Vercel, AWS)',
+      'End-to-end testing and quality assurance'
+    ],
+    more: 'From concept to deployment, I deliver complete solutions with modern React frontends and Python backends. My full-stack approach ensures seamless integration between components, fast load times, and a maintainable architecture that scales with your user base.',
+    benefits: ['Complete solutions', 'Seamless integration', 'Optimized performance', 'Scalable architecture'],
+    color: '#ec4899',
+    gradient: 'linear-gradient(135deg, #ec4899 0%, #f472b6 100%)',
+  },
+  {
+    title: 'Web Development',
+    icon: <FaGlobe />,
+    category: 'development',
+    description: [
+      'Responsive frontend development (Tailwind, CSS-in-JS)',
+      'Authentication flows & protected routes',
+      'Core Web Vitals & performance optimization',
+      'WCAG accessibility compliance',
+      'Progressive Web Apps (PWA) development'
+    ],
+    more: 'I create modern, accessible websites with responsive designs that work flawlessly across all devices. My frontend work focuses on intuitive user interfaces, attention to performance metrics, and inclusive design practices that reach every user.',
+    benefits: ['Mobile responsive', 'Fast loading times', 'Accessible design', 'SEO optimized'],
+    color: '#8b5cf6',
+    gradient: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
+  },
+  {
+    title: 'Security & Performance',
+    icon: <FaShieldAlt />,
+    category: 'consulting',
+    description: [
+      'Security vulnerability assessments & penetration testing',
+      'Application performance profiling & bottleneck resolution',
+      'Secure coding guidelines & dependency auditing',
+      'Scalability analysis & infrastructure recommendations',
+      'DDoS mitigation and security hardening'
+    ],
+    more: 'I help you identify security gaps and performance bottlenecks before they become critical. Through comprehensive audits, automated tooling, and code-level improvements, I ensure your application is robust, fast, and resilient against modern threats and traffic spikes.',
+    benefits: ['Enhanced security', 'Faster performance', 'Reduced risks', 'Peace of mind'],
+    color: '#ef4444',
+    gradient: 'linear-gradient(135deg, #ef4444 0%, #f97316 100%)',
+  },
+  {
+    title: 'Cloud Deployment',
+    icon: <FaCloudUploadAlt />,
+    category: 'consulting',
+    description: [
+      'AWS/GCP/Azure cloud architecture design',
+      'Container orchestration with Docker & Kubernetes',
+      'Serverless architecture implementation',
+      'CI/CD pipeline setup and automation',
+      'Cloud cost optimization strategies'
+    ],
+    more: 'I help businesses leverage cloud technologies for scalability and reliability. From initial architecture design to deployment automation, I ensure your applications are cloud-ready, cost-effective, and resilient to failures.',
+    benefits: ['Scalable infrastructure', 'Reduced costs', 'High availability', 'Automated deployments'],
+    color: '#06b6d4',
+    gradient: 'linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%)',
+  }
 ];
 
 const cardVariants = {
-	offscreen: {
-		y: 50,
-		opacity: 0,
-	},
-	onscreen: {
-		y: 0,
-		opacity: 1,
-		transition: {
-			type: 'spring',
-			bounce: 0.4,
-			duration: 0.8,
-		},
-	},
-};
-
-const hoverVariants = {
-	hover: {
-		y: -10,
-		transition: {
-			duration: 0.3,
-			ease: 'easeOut',
-		},
-	},
+  offscreen: { y: 50, opacity: 0 },
+  onscreen: {
+    y: 0,
+    opacity: 1,
+    transition: { type: 'spring', bounce: 0.3, duration: 0.8 },
+  },
 };
 
 const modalVariants = {
-	hidden: {
-		opacity: 0,
-		scale: 0.8,
-	},
-	visible: {
-		opacity: 1,
-		scale: 1,
-		transition: {
-			duration: 0.3,
-			ease: 'easeOut',
-		},
-	},
-	exit: {
-		opacity: 0,
-		scale: 0.8,
-		transition: {
-			duration: 0.2,
-		},
-	},
+  hidden: { opacity: 0, scale: 0.95, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: { opacity: 0, scale: 0.95, y: 10, transition: { duration: 0.2 } },
 };
 
 const Services = () => {
-	const [modal, setModal] = useState({ open: false, content: null });
+  const [modal, setModal] = useState({ open: false, content: null });
+  const [activeTab, setActiveTab] = useState('all');
 
-	const handleLearnMore = (service) => {
-		setModal({ open: true, content: service });
-	};
+  const filteredServices = activeTab === 'all' 
+    ? servicesData 
+    : servicesData.filter((service) => service.category === activeTab);
 
-	const closeModal = () => setModal({ open: false, content: null });
+  const handleLearnMore = (service) => {
+    setModal({ open: true, content: service });
+  };
 
-	return (
-		<section className="services-section" id="services">
-			<div className="services-container">
-				<motion.h2
-					className="section-title"
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
-					viewport={{ once: true }}
-				>
-					Professional Services
-					<span className="title-decoration"></span>
-				</motion.h2>
+  const closeModal = () => setModal({ open: false, content: null });
 
-				<motion.p
-					className="section-subtitle"
-					initial={{ opacity: 0 }}
-					whileInView={{ opacity: 1 }}
-					transition={{ delay: 0.2, duration: 0.6 }}
-					viewport={{ once: true }}
-				>
-					Comprehensive development solutions tailored to your technical requirements and business objectives
-				</motion.p>
+  return (
+    <section className="services-section" id="services">
+      <div className="services-container">
+        {/* Header */}
+        <motion.div
+          className="services-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <span className="services-badge">
+            <FaRocket style={{ display: 'inline', marginRight: '0.5rem' }} />
+            What I Offer
+          </span>
+          <h2 className="services-title">
+            Professional{' '}
+            <span className="services-title-gradient">
+              Services
+            </span>
+          </h2>
+          <p className="services-subtitle">
+            Comprehensive development solutions tailored to your technical requirements and business
+            objectives — from architecture design to performance tuning.
+          </p>
+        </motion.div>
 
-				<div className="services-grid">
-					{servicesData.map((service, index) => (
-						<motion.div
-							key={index}
-							className="service-card"
-							initial="offscreen"
-							whileInView="onscreen"
-							viewport={{ once: true, margin: '-50px' }}
-							variants={cardVariants}
-							whileHover="hover"
-							style={{ borderTop: `6px solid ${service.color}` }}
-						>
-							<div
-								className="service-icon-container"
-								style={{ backgroundColor: service.color }}
-							>
-								{service.icon}
-							</div>
-							<h3>{service.title}</h3>
-							<ul>
-								{service.description.map((desc, idx) => (
-									<li key={idx}>{desc}</li>
-								))}
-							</ul>
-							<div className="card-footer">
-								<motion.button
-									className="service-btn learn-more-btn"
-									onClick={() => handleLearnMore(service)}
-									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.95 }}
-									style={{
-										color: service.color,
-										borderColor: service.color,
-									}}
-								>
-									Learn More
-								</motion.button>
-								<motion.button
-									className="service-btn contact-btn"
-									onClick={() => (window.location.href = '/contact')}
-									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.95 }}
-									style={{ backgroundColor: service.color }}
-								>
-									Contact Me
-								</motion.button>
-							</div>
-						</motion.div>
-					))}
-				</div>
-			</div>
+        {/* Filter Tabs */}
+        <div className="services-filters">
+          {[
+            { id: 'all', label: 'All Services' },
+            { id: 'development', label: '💻 Development' },
+            { id: 'consulting', label: '🎯 Consulting' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`filter-btn ${
+                activeTab === tab.id ? 'filter-btn-active' : 'filter-btn-inactive'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-			<AnimatePresence>
-				{modal.open && (
-					<motion.div
-						className="service-modal-overlay"
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						onClick={closeModal}
-					>
-						<motion.div
-							className="service-modal"
-							variants={modalVariants}
-							initial="hidden"
-							animate="visible"
-							exit="exit"
-							onClick={(e) => e.stopPropagation()}
-							style={{ borderTop: `6px solid ${modal.content?.color}` }}
-						>
-							<button
-								className="service-modal-close"
-								onClick={closeModal}
-							>
-								&times;
-							</button>
-							<div className="service-modal-header">
-								<div
-									className="modal-icon"
-									style={{ backgroundColor: modal.content?.color }}
-								>
-									{modal.content?.icon}
-								</div>
-								<h3>{modal.content?.title}</h3>
-							</div>
-							<div className="service-modal-content">
-								<p>{modal.content?.more}</p>
-								<div className="modal-features">
-									<h4>Key Features:</h4>
-									<ul>
-										{modal.content?.description.map((item, index) => (
-											<li key={index}>{item}</li>
-										))}
-									</ul>
-								</div>
-								<div className="modal-actions">
-									<a
-										href="mailto:brian.o.iraru@gmail.com?subject=Service Inquiry"
-										style={{ textDecoration: 'none' }}
-									>
-										<motion.button
-											className="modal-contact-btn"
-											whileHover={{ scale: 1.05 }}
-											whileTap={{ scale: 0.95 }}
-											style={{ backgroundColor: modal.content?.color }}
-										>
-											Get Started
-										</motion.button>
-									</a>
-									<motion.button
-										className="modal-close-btn"
-										onClick={closeModal}
-										whileHover={{ scale: 1.05 }}
-										whileTap={{ scale: 0.95 }}
-									>
-										Close
-									</motion.button>
-								</div>
-							</div>
-						</motion.div>
-					</motion.div>
-				)}
-			</AnimatePresence>
+        {/* Services Grid */}
+        <div className="services-grid">
+          {filteredServices.map((service, idx) => (
+            <motion.div
+              key={idx}
+              initial="offscreen"
+              whileInView="onscreen"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={cardVariants}
+              className="service-card"
+            >
+              <div
+                className="service-card-gradient"
+                style={{ background: service.gradient }}
+              />
+              <div className="service-card-content">
+                {/* Icon */}
+                <div
+                  className="service-icon-wrapper"
+                  style={{ background: service.gradient }}
+                >
+                  <div className="service-icon">{service.icon}</div>
+                </div>
 
-			<style jsx>{`
-				.services-section {
-					padding: 6rem 1rem;
-					background: #f8fafc;
-					min-height: 100vh;
-					position: relative;
-				}
-				.services-container {
-					max-width: 1280px;
-					margin: 0 auto;
-					padding: 2rem 1rem;
-				}
-				.section-title {
-					text-align: center;
-					font-size: 2.8rem;
-					margin-bottom: 1.5rem;
-					color: #1e293b;
-					font-weight: 800;
-					letter-spacing: -0.5px;
-					position: relative;
-					display: inline-block;
-					left: 50%;
-					transform: translateX(-50%);
-					background: linear-gradient(to right, #2563eb, #4f46e5);
-					-webkit-background-clip: text;
-					-webkit-text-fill-color: transparent;
-					padding: 0 2rem;
-				}
-				.title-decoration {
-					position: absolute;
-					bottom: -8px;
-					left: 50%;
-					transform: translateX(-50%);
-					width: 100px;
-					height: 4px;
-					background: linear-gradient(90deg, #2563eb, #4f46e5);
-					border-radius: 4px;
-				}
-				.section-subtitle {
-					text-align: center;
-					font-size: 1.25rem;
-					color: #475569;
-					max-width: 800px;
-					margin: 0 auto 4rem;
-					line-height: 1.7;
-					font-weight: 500;
-					background: #fff;
-					border-radius: 12px;
-					padding: 1.25rem 2rem;
-					box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
-					border: 1px solid #e2e8f0;
-				}
-				.services-grid {
-					display: grid;
-					grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-					gap: 30px;
-					max-width: 1200px;
-					margin: 0 auto;
-					padding: 0 20px;
-					box-sizing: border-box;
-					width: 100%;
-				}
-				.service-card {
-					background: #f7faff;
-					border-radius: 10px;
-					padding: 30px;
-					box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-					transition: transform 0.3s ease, box-shadow 0.3s ease;
-					display: flex;
-					flex-direction: column;
-					height: 100%;
-					min-width: 0;
-					word-break: break-word;
-					border-top: 6px solid #2563eb22;
-				}
-				.service-card:hover {
-					transform: translateY(-10px);
-					box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-				}
-				.service-card h3 {
-					font-size: 1.5rem;
-					margin-bottom: 15px;
-					color: #2c3e50;
-				}
-				.service-card ul {
-					margin-bottom: 20px;
-					padding-left: 1.2rem;
-					list-style: disc inside;
-				}
-				.service-card li {
-					margin-bottom: 0.7rem;
-					color: #222;
-					font-size: 1.08rem;
-					line-height: 1.6;
-				}
-				.service-icon-container {
-					font-size: 2.7rem;
-					min-width: 56px;
-					min-height: 56px;
-					border-radius: 50%;
-					background: #2563eb;
-					color: #fff;
-					box-shadow: 0 2px 8px rgba(37,99,235,0.10);
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					margin-bottom: 1.5rem;
-				}
-				.card-footer {
-					display: flex;
-					gap: 12px;
-					margin-top: auto;
-				}
-				.service-btn {
-					padding: 0.8rem 1.5rem;
-					border-radius: 8px;
-					font-weight: 600;
-					cursor: pointer;
-					font-size: 1rem;
-					transition: all 0.3s ease;
-					flex: 1;
-					text-align: center;
-				}
-				.learn-more-btn {
-					background: transparent;
-					border: 2px solid;
-					color: inherit;
-				}
-				.learn-more-btn:hover {
-					background: rgba(0, 0, 0, 0.03);
-				}
-				.contact-btn {
-					border: none;
-					color: #fff;
-					box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-				}
-				.contact-btn:hover {
-					filter: brightness(1.08);
-					box-shadow: 0 6px 18px rgba(37,99,235,0.18);
-					transform: scale(1.04);
-					background: linear-gradient(90deg, #111827, #2563eb);
-				}
-				.service-modal-overlay {
-					position: fixed;
-					top: 0;
-					left: 0;
-					right: 0;
-					bottom: 0;
-					background: rgba(15, 23, 42, 0.7);
-					backdrop-filter: blur(4px);
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					z-index: 1000;
-					padding: 1rem;
-				}
-				.service-modal {
-					background: #fff;
-					border-radius: 18px;
-					max-width: 600px;
-					width: 100%;
-					max-height: 90vh;
-					overflow-y: auto;
-					position: relative;
-					box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-					border: 1px solid #e2e8f0;
-					animation: modalPop 0.3s;
-				}
-				@keyframes modalPop {
-					from {
-						transform: scale(0.95);
-						opacity: 0;
-					}
-					to {
-						transform: scale(1);
-						opacity: 1;
-					}
-				}
-				.service-modal-close {
-					position: absolute;
-					top: 1.5rem;
-					right: 1.5rem;
-					background: none;
-					border: none;
-					font-size: 1.8rem;
-					cursor: pointer;
-					color: #64748b;
-					transition: color 0.2s;
-					z-index: 2;
-					width: 40px;
-					height: 40px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					border-radius: 50%;
-				}
-				.service-modal-close:hover {
-					color: #1e293b;
-					background: #f1f5f9;
-				}
-				.service-modal-header {
-					padding: 2.5rem 2.5rem 1.5rem;
-					display: flex;
-					align-items: center;
-					gap: 1.5rem;
-					border-bottom: 1px solid #e2e8f0;
-				}
-				.modal-icon {
-					font-size: 2rem;
-					min-width: 60px;
-					min-height: 60px;
-					border-radius: 14px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					color: #fff;
-					box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-				}
-				.service-modal-header h3 {
-					font-size: 1.8rem;
-					margin: 0;
-					color: #1e293b;
-					font-weight: 700;
-					line-height: 1.3;
-				}
-				.service-modal-content {
-					padding: 2rem 2.5rem;
-				}
-				.service-modal-content p {
-					color: #334155;
-					line-height: 1.8;
-					margin-bottom: 2rem;
-					font-size: 1.15rem;
-				}
-				.modal-features {
-					background: #f8fafc;
-					border-radius: 10px;
-					padding: 1.5rem;
-					margin-bottom: 2.5rem;
-					border: 1px solid #e2e8f0;
-				}
-				.modal-features h4 {
-					font-size: 1.25rem;
-					margin: 0 0 1rem 0;
-					color: #1e293b;
-				}
-				.modal-features ul {
-					padding-left: 1.5rem;
-					list-style: none;
-					margin: 0;
-				}
-				.modal-features li {
-					margin-bottom: 0.8rem;
-					color: #334155;
-					font-size: 1.05rem;
-					line-height: 1.6;
-					position: relative;
-					padding-left: 1.5rem;
-				}
-				.modal-features li:before {
-					content: '•';
-					color: ${modal.content?.color || '#6366f1'};
-					font-size: 1.5rem;
-					position: absolute;
-					left: 0;
-					top: -3px;
-				}
-				.modal-actions {
-					display: flex;
-					gap: 1rem;
-					justify-content: flex-end;
-				}
-				.modal-contact-btn,
-				.modal-close-btn {
-					padding: 0.9rem 1.75rem;
-					border-radius: 8px;
-					font-weight: 600;
-					cursor: pointer;
-					font-size: 1rem;
-					transition: all 0.3s ease;
-				}
-				.modal-contact-btn {
-					border: none;
-					color: #fff;
-					box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-				}
-				.modal-contact-btn:hover {
-					filter: brightness(1.1);
-					box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-				}
-				.modal-close-btn {
-					background: transparent;
-					border: 1px solid #cbd5e1;
-					color: #64748b;
-				}
-				.modal-close-btn:hover {
-					background: #f1f5f9;
-					color: #334155;
-					border-color: #94a3b8;
-				}
-				@media (max-width: 1024px) {
-					.services-grid {
-						flex-direction: column;
-						gap: 20px;
-					}
-					.service-card {
-						max-width: 100%;
-					}
-				}
-				@media (max-width: 768px) {
-					.section-title {
-						font-size: 2.4rem;
-					}
-					.section-subtitle {
-						font-size: 1.15rem;
-						padding: 1rem 1.5rem;
-						margin-bottom: 3rem;
-					}
-					.service-card {
-						padding: 25px;
-					}
-					.service-modal-header {
-						padding: 1.75rem 1.75rem 1.25rem;
-					}
-					.service-modal-content {
-						padding: 1.5rem 1.75rem;
-					}
-				}
-				@media (max-width: 640px) {
-					.services-section {
-						padding: 4rem 1rem;
-					}
-					.services-grid {
-						flex-direction: column;
-						gap: 16px;
-					}
-					.card-footer {
-						flex-direction: column;
-					}
-					.modal-actions {
-						flex-direction: column;
-					}
-				}
-			`}</style>
-		</section>
-	);
+                <h3 className="service-title">{service.title}</h3>
+
+                <ul className="service-description-list">
+                  {service.description.slice(0, 4).map((desc, i) => (
+                    <li key={i} className="service-description-item">
+                      <span
+                        className="service-dot"
+                        style={{ backgroundColor: service.color }}
+                      />
+                      <span>{desc}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  onClick={() => handleLearnMore(service)}
+                  className="service-learn-btn"
+                  style={{ borderColor: service.color, color: service.color }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = service.gradient;
+                    e.currentTarget.style.color = 'white';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'white';
+                    e.currentTarget.style.color = service.color;
+                  }}
+                >
+                  Learn More <FaArrowRight className="text-sm" />
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Why Choose Me Section */}
+        <motion.div
+          className="services-cta"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="cta-title">Why Choose Me?</h3>
+          <div className="why-choose-grid">
+            <div className="why-choose-item">
+              <FaClock size={32} />
+              <h4>Timely Delivery</h4>
+              <p>Projects delivered on schedule</p>
+            </div>
+            <div className="why-choose-item">
+              <FaChartLine size={32} />
+              <h4>Quality Focused</h4>
+              <p>Clean, maintainable code</p>
+            </div>
+            <div className="why-choose-item">
+              <FaLightbulb size={32} />
+              <h4>Innovative Solutions</h4>
+              <p>Creative problem solving</p>
+            </div>
+            <div className="why-choose-item">
+              <FaMoneyBillWave size={32} />
+              <h4>Competitive Rates</h4>
+              <p>Value for your investment</p>
+            </div>
+          </div>
+
+          <h3 className="cta-title" style={{ fontSize: '1.5rem', marginTop: '1rem' }}>
+            Ready to Start Your Project?
+          </h3>
+          <p className="cta-text">
+            Let's discuss how I can help bring your ideas to life with clean, scalable, and secure code.
+            Whether you need a complete web application, API integration, or technical consultation,
+            I'm here to help you succeed.
+          </p>
+          <motion.a
+            href="mailto:brian.o.iraru@gmail.com?subject=Service%20Inquiry"
+            className="cta-button"
+            style={{ background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)' }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Start a Conversation <FiExternalLink />
+          </motion.a>
+        </motion.div>
+      </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {modal.open && modal.content && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
+            <motion.div
+              className="modal-container"
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="modal-header">
+                <div
+                  className="modal-icon"
+                  style={{ background: modal.content.gradient }}
+                >
+                  <div style={{ fontSize: '2rem', color: 'white' }}>{modal.content.icon}</div>
+                </div>
+                <div className="modal-title-section">
+                  <h3 className="modal-title">{modal.content.title}</h3>
+                  <button onClick={closeModal} className="modal-close-btn" aria-label="Close">
+                    <FaTimes size={20} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="modal-body">
+                <p className="modal-description">{modal.content.more}</p>
+
+                <h4 className="modal-features-title">✨ What's Included:</h4>
+                <div className="modal-features-grid">
+                  {modal.content.description.map((feature, idx) => (
+                    <div key={idx} className="modal-feature-item">
+                      <span
+                        className="modal-feature-dot"
+                        style={{ backgroundColor: modal.content?.color }}
+                      />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <h4 className="modal-features-title">🎯 Key Benefits:</h4>
+                <div className="modal-features-grid">
+                  {modal.content.benefits.map((benefit, idx) => (
+                    <div key={idx} className="modal-feature-item">
+                      <span
+                        className="modal-feature-dot"
+                        style={{ backgroundColor: modal.content?.color }}
+                      />
+                      <span>{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="modal-footer">
+                <motion.a
+                  href={`mailto:brian.o.iraru@gmail.com?subject=Interested in ${modal.content.title}`}
+                  className="modal-action-btn"
+                  style={{ background: modal.content.gradient }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Get Started <FiExternalLink />
+                </motion.a>
+                <button onClick={closeModal} className="modal-close-footer-btn">
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
 };
 
 export default Services;

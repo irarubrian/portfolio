@@ -1,0 +1,12 @@
+/* Navbar.module.css */
+/* Same styles as above but with :local scope */
+:local(.navbar) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+/* ... rest of the styles with :local prefix */

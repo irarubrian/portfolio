@@ -1,0 +1,581 @@
+/* Project.css - Complete Styling */
+
+/* ========================================
+   BASE SECTION STYLES
+   ======================================== */
+
+.portfolio-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 5rem 1rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.dark-mode .portfolio-section {
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+}
+
+/* Animated Background */
+.portfolio-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  animation: bgFloat 15s ease infinite;
+}
+
+@keyframes bgFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(-20px); opacity: 1; }
+}
+
+.portfolio-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   HEADER STYLES
+   ======================================== */
+
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.portfolio-badge {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .portfolio-badge {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+}
+
+.portfolio-badge:hover {
+  transform: translateY(-2px);
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.portfolio-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.dark-mode .portfolio-title {
+  color: #f1f5f9;
+}
+
+@media (min-width: 768px) {
+  .portfolio-title {
+    font-size: 3rem;
+  }
+}
+
+.portfolio-title-gradient {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientFlow 3s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.portfolio-subtitle {
+  font-size: 1rem;
+  color: #475569;
+  max-width: 42rem;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.dark-mode .portfolio-subtitle {
+  color: #94a3b8;
+}
+
+@media (min-width: 768px) {
+  .portfolio-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+/* ========================================
+   PROJECTS GRID
+   ======================================== */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Project Card */
+.project-card {
+  background: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  cursor: pointer;
+}
+
+.dark-mode .project-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Gradient Border */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #6366f1);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+  animation: borderSlide 2s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* Card Content */
+.project-card-content {
+  padding: 1.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .project-card-content {
+    padding: 2rem;
+  }
+}
+
+/* Project Icon */
+.project-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-icon {
+  transform: scale(1.05) rotate(5deg);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.project-icon svg {
+  font-size: 1.8rem;
+  color: #6366f1;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-icon svg {
+  color: white;
+}
+
+/* Project Title */
+.project-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.dark-mode .project-name {
+  color: #f1f5f9;
+}
+
+@media (min-width: 768px) {
+  .project-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tech Stack Tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-tag {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.dark-mode .project-tag {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+}
+
+/* Project Description */
+.project-description {
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dark-mode .project-description {
+  color: #94a3b8;
+}
+
+@media (min-width: 768px) {
+  .project-description {
+    font-size: 0.95rem;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Project Link */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.project-link:hover {
+  transform: translateX(5px);
+  box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+}
+
+.project-link svg {
+  transition: transform 0.3s ease;
+}
+
+.project-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ========================================
+   STATS SECTION
+   ======================================== */
+
+.portfolio-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+@media (min-width: 768px) {
+  .portfolio-stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .stat-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.dark-mode .stat-label {
+  color: #94a3b8;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+
+.portfolio-cta {
+  text-align: center;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.portfolio-cta h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .portfolio-cta h3 {
+    font-size: 2rem;
+  }
+}
+
+.portfolio-cta p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: #6366f1;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.project-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 640px) {
+  .portfolio-section {
+    padding: 3rem 0.75rem;
+  }
+  
+  .project-card-content {
+    padding: 1.2rem;
+  }
+  
+  .project-name {
+    font-size: 1.1rem;
+  }
+  
+  .project-description {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 5;
+  }
+  
+  .portfolio-cta {
+    padding: 1.5rem;
+  }
+  
+  .portfolio-cta h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR
+   ======================================== */
+
+.portfolio-section::-webkit-scrollbar {
+  width: 10px;
+}
+
+.portfolio-section::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.portfolio-section::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 10px;
+}
+
+.dark-mode .portfolio-section::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .portfolio-section {
+    background: white;
+    padding: 1rem;
+  }
+  
+  .project-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .portfolio-cta,
+  .project-link {
+    display: none;
+  }
+}

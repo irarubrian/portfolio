@@ -1,485 +1,428 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaTwitter } from "react-icons/fa";
-import profileImage from "../assets/profile.jpeg";
+import { 
+  FaGithub, FaLinkedin, FaEnvelope, FaTwitter, FaArrowDown, 
+  FaCode, FaRocket, FaCloudUploadAlt, FaUsers, FaAward,
+  FaShieldAlt, FaInfinity, FaStar, FaLightbulb, FaTrophy
+} from "react-icons/fa";
+import { FiCopy } from "react-icons/fi";
+import { GiStarsStack, GiBrain } from "react-icons/gi";
+import "./Hero.css";
 
-const heroIntro = `With a strong foundation in software engineering, I design and develop robust, scalable systems that power seamless digital experiences. I build efficient back-end architectures and responsive front-end interfaces that prioritize performance, maintainability, and user satisfaction. Whether architecting complex APIs, implementing secure authentication flows, or optimizing code for efficiency, I am driven by a passion for clean, purposeful engineering. My approach combines deep technical expertise with a problem-solving mindset to deliver innovative solutions that meet real-world demands and exceed expectations.`;
+const techSkills = [
+  { name: 'React.js', percent: 92, color: '#61DAFB' },
+  { name: 'Next.js', percent: 88, color: '#000000' },
+  { name: 'TypeScript', percent: 86, color: '#3178C6' },
+  { name: 'Tailwind CSS', percent: 94, color: '#06B6D4' },
+  { name: 'Node.js', percent: 89, color: '#68A063' },
+  { name: 'Express.js', percent: 85, color: '#000000' },
+  { name: 'Python', percent: 90, color: '#3572A5' },
+  { name: 'FastAPI', percent: 84, color: '#009688' },
+  { name: 'MongoDB', percent: 86, color: '#47A248' },
+  { name: 'PostgreSQL', percent: 88, color: '#336791' },
+  { name: 'AWS', percent: 85, color: '#FF9900' },
+  { name: 'Docker', percent: 83, color: '#2496ED' },
+];
+
+const inspiringQuotes = [
+  { text: "Code is like poetry — elegant solutions to complex problems.", author: "Brian Iraru" },
+  { text: "Building the future, one commit at a time.", author: "Brian Iraru" },
+  { text: "Simplicity is the ultimate sophistication in engineering.", author: "Brian Iraru" },
+  { text: "Great developers don't just write code — they craft experiences.", author: "Brian Iraru" },
+  { text: "Innovation distinguishes between a leader and a follower.", author: "Brian Iraru" },
+];
 
 const Hero = () => {
-  return (
-    <section
-      className="hero-section"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "linear-gradient(135deg, #111827 0%, #000000 100%)",
-        color: "#fff",
-        padding: "2rem 1.5rem",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Background pattern */}
-      <div 
-        className="hero-bg-pattern"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: "radial-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-          opacity: 0.3,
-          zIndex: 0
-        }}
-      />
+  const [isHoveringLogo, setIsHoveringLogo] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [activeSkill, setActiveSkill] = useState(null);
+  const [activeQuoteIndex, setActiveQuoteIndex] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const controls = useAnimation();
+  const containerRef = useRef(null);
 
-      {/* Circular Logo at the Top */}
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveQuoteIndex((prev) => (prev + 1) % inspiringQuotes.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (isHoveringLogo) {
+      controls.start({
+        rotate: 360,
+        transition: { duration: 10, ease: "linear", repeat: Infinity },
+      });
+    } else {
+      controls.start({
+        rotate: 0,
+        transition: { duration: 0.8, ease: "easeOut" },
+      });
+    }
+  }, [isHoveringLogo, controls]);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("brian.o.iraru@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] },
+    },
+  };
+
+  return (
+    <section ref={containerRef} className="hero-section">
+      {/* Background */}
+      <div className="hero-gradient-bg">
+        <div className="hero-gradient-overlay" />
+      </div>
+
+      {/* Hire Me Logo */}
       <motion.div
-        className="logo-container"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
+        className="hero-hire-logo"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+        whileHover={{ scale: 1.05 }}
+        onMouseEnter={() => setIsHoveringLogo(true)}
+        onMouseLeave={() => setIsHoveringLogo(false)}
       >
-        <motion.a
-          href="/contact"
-          className="circular-logo"
-          style={{
-            display: "block",
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            borderRadius: "50%",
-            background: "linear-gradient(135deg, #2563eb 60%, #111827 100%)",
-            boxShadow: "0 8px 32px rgba(37, 99, 235, 0.18)",
-            textAlign: "center",
-            textDecoration: "none",
-            cursor: "pointer",
-            overflow: "visible",
+        <motion.div
+          style={{ transformStyle: "preserve-3d" }}
+          animate={{
+            rotateX: mousePosition.y * 15 - 7.5,
+            rotateY: mousePosition.x * 15 - 7.5,
           }}
-          whileHover={{ scale: 1.08, boxShadow: "0 12px 40px rgba(37, 99, 235, 0.3)" }}
-          whileTap={{ scale: 0.97 }}
-          title="Hire Me"
+          transition={{ type: "spring", stiffness: 200, damping: 20 }}
         >
-          <motion.div
-            className="logo-text"
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              color: "#fff",
-              fontWeight: 800,
-              fontSize: "1.1rem",
-              letterSpacing: "1px",
-              zIndex: 2,
-              pointerEvents: "none"
-            }}
+          <motion.a
+            href="/contact"
+            className="relative block w-full h-full rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 shadow-2xl overflow-hidden"
+            animate={controls}
+            whileTap={{ scale: 0.95 }}
           >
-            Hire Me
-          </motion.div>
-          <motion.div
-            className="rotating-text-container"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              pointerEvents: "none",
-              zIndex: 1
-            }}
-            animate={{ rotate: 360 }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 25,
-              ease: "linear" 
-            }}
-          >
-            <svg 
-              width="100%" 
-              height="100%" 
-              viewBox="0 0 140 140"
-              preserveAspectRatio="xMidYMid meet"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-label="Rotating developer logo text"
-              role="img"
-            >
-              <defs>
-                <path 
-                  id="circlePath" 
-                  d="M70,70 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0" 
-                />
-              </defs>
-              <text 
-                fill="#fff" 
-                fontSize="10" 
-                fontWeight="600"
-                fontFamily="Arial, sans-serif"
-                letterSpacing="2"
-              >
-                <textPath 
-                  href="#circlePath" 
-                  startOffset="0"
-                  textAnchor="start"
-                  dominantBaseline="middle"
-                >
-                  • SOFTWARE ENGINEER • FULL STACK DEVELOPER • HIRE ME • 
-                </textPath>
-              </text>
-              <desc>Animated circular text: SOFTWARE ENGINEER • FULL STACK DEVELOPER • HIRE ME •</desc>
-            </svg>
-          </motion.div>
-        </motion.a>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-white font-bold text-sm md:text-base z-10 tracking-wider">
+                Hire Me
+              </span>
+            </div>
+          </motion.a>
+        </motion.div>
       </motion.div>
 
+      {/* Main Content */}
       <motion.div
-        className="hero-content"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "3rem",
-          maxWidth: "1200px",
-          margin: "0 auto",
-          width: "100%",
-          position: "relative",
-          zIndex: 1,
-          paddingTop: "6rem"
-        }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        className="relative z-10 flex flex-col items-center justify-center max-w-7xl mx-auto w-full px-4 md:px-8 pt-20 pb-24"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
       >
-        {/* Profile Picture Section */}
-        <motion.div
-          className="profile-container"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          <div
-            className="profile-image-wrapper"
-            style={{
-              width: "180px",
-              height: "180px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              border: "3px solid #3b82f6",
-              boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.25)",
-            }}
-          >
-            <img
-              src={profileImage}
-              alt="Brian Iraru"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "top center",
-                filter: "grayscale(10%) contrast(110%) brightness(105%)",
+        {/* Profile Section */}
+        <motion.div variants={itemVariants} className="hero-profile-container">
+          <div className="relative">
+            <div className="hero-ring-outer" />
+            <div className="hero-ring-inner" />
+            
+            <motion.div
+              className="hero-profile-image"
+              animate={{
+                y: mousePosition.y * -10,
+                x: mousePosition.x * -10,
               }}
-            />
+              transition={{ type: "spring", stiffness: 150, damping: 20 }}
+            >
+              <div className="hero-profile-overlay" />
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Brian Iraru"
+                className="hero-profile-img"
+              />
+              <div className="hero-profile-gradient" />
+            </motion.div>
+          </div>
+
+          {/* Floating Badges */}
+          {techSkills.slice(0, 6).map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                x: index % 2 === 0 ? [0, -10, 0] : [0, 10, 0],
+                y: [0, -5, 0],
+              }}
+              transition={{ 
+                delay: 0.8 + index * 0.15,
+                x: { duration: 4, repeat: Infinity, delay: index },
+                y: { duration: 3, repeat: Infinity, delay: index * 0.5 },
+              }}
+              className="hero-badge"
+              style={{
+                top: index < 3 ? `${5 + index * 12}%` : `${75 + (index - 3) * 8}%`,
+                [index % 2 === 0 ? "left" : "right"]: index < 3 ? "-10%" : "-8%",
+                backgroundColor: `${skill.color}20`,
+                borderColor: `${skill.color}60`,
+                boxShadow: `0 0 15px ${skill.color}30`,
+              }}
+              whileHover={{ scale: 1.15, backgroundColor: `${skill.color}40` }}
+              onMouseEnter={() => setActiveSkill(skill.name)}
+              onMouseLeave={() => setActiveSkill(null)}
+            >
+              <span style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+                <span style={{ width: "0.375rem", height: "0.375rem", borderRadius: "50%", background: skill.color }} />
+                {skill.name}
+              </span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Welcome Badge */}
+        <motion.div variants={itemVariants} className="hero-welcome-badge">
+          <span className="hero-welcome-text">
+            ✨ Welcome to my digital universe ✨
+          </span>
+        </motion.div>
+        
+        {/* Main Title */}
+        <motion.h1 variants={itemVariants} className="hero-title">
+          <span className="hero-title-prefix">Hi, I'm </span>
+          <motion.span
+            className="hero-title-name"
+            animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+            transition={{ duration: 6, repeat: Infinity }}
+            style={{ backgroundSize: "200% auto" }}
+          >
+            Brian Iraru
+          </motion.span>
+        </motion.h1>
+
+        {/* Typing Animation */}
+        <motion.div variants={itemVariants} className="hero-typing">
+          <TypeAnimation
+            sequence={[
+              "Creative Technologist", 1200,
+              "Full Stack Architect", 1200,
+              "Problem Solver", 1200,
+              "Innovation Driver", 1200,
+              "Tech Entrepreneur", 1200,
+            ]}
+            wrapper="div"
+            speed={40}
+            deletionSpeed={60}
+            repeat={Infinity}
+          />
+        </motion.div>
+
+        {/* Quote Rotator */}
+        <motion.div variants={itemVariants} className="hero-quote">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeQuoteIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="hero-quote-card"
+            >
+              <p className="hero-quote-text">"{inspiringQuotes[activeQuoteIndex].text}"</p>
+              <p className="hero-quote-author">— {inspiringQuotes[activeQuoteIndex].author}</p>
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Professional Bio */}
+        <motion.div variants={itemVariants} className="hero-bio">
+          <motion.p className="hero-bio-text">
+            I craft digital experiences that blend cutting-edge technology with human-centered design. 
+            As a full-stack architect and creative technologist, I transform complex challenges into 
+            elegant, scalable solutions that drive real impact. With expertise across the modern web stack, 
+            I deliver high-performance applications that users love.
+          </motion.p>
+        </motion.div>
+
+        {/* Key Stats */}
+        <motion.div variants={itemVariants} style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "center", marginTop: "0.5rem" }}>
+          <div style={{ background: "rgba(59,130,246,0.1)", padding: "0.5rem 1rem", borderRadius: "2rem", border: "1px solid rgba(59,130,246,0.2)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <FaTrophy style={{ color: "#f59e0b" }} />
+            <span style={{ fontSize: "0.875rem", color: "#d1d5db" }}>10+ Projects Completed</span>
+          </div>
+          <div style={{ background: "rgba(59,130,246,0.1)", padding: "0.5rem 1rem", borderRadius: "2rem", border: "1px solid rgba(59,130,246,0.2)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <FaUsers style={{ color: "#10b981" }} />
+            <span style={{ fontSize: "0.875rem", color: "#d1d5db" }}>15+ Happy Clients</span>
+          </div>
+          <div style={{ background: "rgba(59,130,246,0.1)", padding: "0.5rem 1rem", borderRadius: "2rem", border: "1px solid rgba(59,130,246,0.2)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            <FaStar style={{ color: "#fbbf24" }} />
+            <span style={{ fontSize: "0.875rem", color: "#d1d5db" }}>100% Client Satisfaction</span>
           </div>
         </motion.div>
 
-        {/* Text Content Section */}
-        <div
-          className="text-content"
-          style={{
-            textAlign: "center",
-            maxWidth: "700px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <motion.h1
-            className="hero-title"
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Hi, I'm{" "}
-            <span className="name-gradient">
-              Brian Iraru
-            </span>
-          </motion.h1>
-
-          <motion.div
-            className="type-animation-container"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            <TypeAnimation
-              sequence={[
-                "Software Engineer",
-                1500,
-                "Full Stack Developer",
-                1500,
-                "Tech Enthusiast",
-                1500,
-                "Problem Solver",
-                1500,
-              ]}
-              wrapper="div"
-              speed={50}
-              deletionSpeed={70}
-              style={{
-                display: "inline-block",
-                color: "#93c5fd",
-                fontStyle: "italic",
-                fontSize: "clamp(1rem, 2vw, 1.5rem)",
-                minHeight: "2.5rem"
-              }}
-              repeat={Infinity}
-            />
-          </motion.div>
-
-          {/* Engineering Summary Section */}
-          <motion.div
-            className="hero-intro"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-          >
-            {heroIntro}
-          </motion.div>
-
-          {/* Buttons Section */}
-          <motion.div
-            className="hero-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-          >
-            <Link to="/contact" className="button-link">
-              <motion.button
-                className="primary-button"
-                whileHover={{
-                  scale: 1.05,
-                  background: "linear-gradient(90deg, #1d4ed8, #2563eb)",
-                  boxShadow: "0 6px 16px rgba(37, 99, 235, 0.3)",
-                }}
-                whileTap={{ scale: 0.98 }}
+        {/* Tech Skills Grid */}
+        <motion.div variants={itemVariants} className="hero-skills-section">
+          <div className="hero-skills-header">
+            <h3 className="hero-skills-title">
+              <GiStarsStack style={{ color: "#60a5fa" }} />
+              Technical Arsenal
+              <GiStarsStack style={{ color: "#a78bfa" }} />
+            </h3>
+            <p className="hero-skills-subtitle">Tools & technologies I master</p>
+          </div>
+          
+          <div className="hero-skills-grid">
+            {techSkills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 + index * 0.05 }}
+                whileHover={{ scale: 1.03, y: -2 }}
+                onMouseEnter={() => setActiveSkill(skill.name)}
+                onMouseLeave={() => setActiveSkill(null)}
+                className="hero-skill-card"
+                style={{ borderColor: `${skill.color}40` }}
               >
-                Connect with me
-              </motion.button>
-            </Link>
-            <a
-              href="/brianiraru.pdf"
+                <div className="hero-skill-header">
+                  <span className="hero-skill-name">{skill.name}</span>
+                  <span className="hero-skill-percent" style={{ color: skill.color }}>{skill.percent}%</span>
+                </div>
+                <div className="hero-skill-bar">
+                  <motion.div
+                    className="hero-skill-progress"
+                    style={{ background: skill.color, width: 0 }}
+                    whileInView={{ width: `${skill.percent}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.5 + index * 0.05 }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Action Buttons */}
+        <motion.div variants={itemVariants} className="hero-buttons">
+          <Link to="/contact" style={{ textDecoration: "none" }}>
+            <motion.button className="hero-btn-primary">
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                <FaRocket />
+                Start a Project
+              </span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.6 }}
+              />
+            </motion.button>
+          </Link>
+
+          <a href="/brianiraru.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+            <motion.button className="hero-btn-secondary">
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                <FaCloudUploadAlt />
+                View Resume
+              </span>
+            </motion.button>
+          </a>
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div variants={itemVariants} className="hero-social">
+          {[
+            { icon: <FaGithub size={22} />, url: "https://github.com/brianiraru", color: "#ffffff", label: "GitHub" },
+            { icon: <FaLinkedin size={22} />, url: "https://linkedin.com/in/brianiraru", color: "#0a66c2", label: "LinkedIn" },
+            { icon: <FaEnvelope size={22} />, action: handleCopyEmail, color: "#ea4335", label: copied ? "Copied!" : "Email" },
+            { icon: <FaTwitter size={22} />, url: "https://twitter.com/brianiraru", color: "#1d9bf0", label: "Twitter" },
+          ].map((item, index) => (
+            <motion.a
+              key={index}
+              href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="button-link"
+              onClick={item.action}
+              className="hero-social-link"
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <motion.button
-                className="tertiary-button"
+              <motion.div
+                className="hero-social-icon"
                 whileHover={{
-                  scale: 1.05,
-                  backgroundColor: "rgba(59, 130, 246, 0.2)",
-                  boxShadow: "0 6px 16px rgba(0, 0, 0, 0.15)",
+                  background: `radial-gradient(circle at 30% 30%, ${item.color}30, transparent)`,
+                  boxShadow: `0 0 20px ${item.color}40`,
                 }}
-                whileTap={{ scale: 0.98 }}
               >
-                View My CV
-              </motion.button>
-            </a>
-          </motion.div>
-        </div>
+                {item.icon}
+              </motion.div>
+              <span className="hero-social-label">{item.label}</span>
+            </motion.a>
+          ))}
+        </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll Indicator */}
       <motion.div
-        className="scroll-indicator"
+        className="hero-scroll"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
+        whileHover={{ y: 5 }}
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
       >
-        <span className="scroll-text">Scroll down</span>
-        <div className="scroll-icon">
-          <motion.div
-            className="scroll-dot"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
+        <span className="hero-scroll-text">SCROLL</span>
+        <div className="hero-scroll-icon">
+          <div className="hero-scroll-dot" />
         </div>
       </motion.div>
 
-      <style jsx>{`
-        .hero-section {
-          position: relative;
-          padding-top: 7rem;
-        }
-        
-        .hero-content {
-          padding-top: 6rem;
-        }
-
-        .logo-container {
-          position: absolute;
-          top: 2rem;
-          right: 2rem;
-          z-index: 10;
-          width: 140px;
-          height: 140px;
-        }
-        @media (max-width: 768px) {
-          .logo-container {
-            width: 90px;
-            height: 90px;
-            top: 1rem;
-            right: 1rem;
-          }
-        }
-        @media (max-width: 480px) {
-          .logo-container {
-            width: 64px;
-            height: 64px;
-            top: 0.5rem;
-            right: 0.5rem;
-          }
-        }
-
-        .profile-image-wrapper {
-          width: 180px;
-          height: 180px;
-        }
-
-        @media (max-width: 768px) {
-          .profile-image-wrapper {
-            width: 150px;
-            height: 150px;
-          }
-        }
-        @media (max-width: 480px) {
-          .profile-image-wrapper {
-            width: 120px;
-            height: 120px;
-          }
-        }
-
-        .hero-title {
-          font-size: clamp(2rem, 5vw, 3rem);
-          font-weight: 700;
-          margin-bottom: 1rem;
-          line-height: 1.2;
-        }
-
-        .name-gradient {
-          background: linear-gradient(90deg, #3b82f6, #93c5fd);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-
-        .hero-intro {
-          margin: 2rem 0;
-          max-width: 700px;
-          text-align: center;
-          font-size: 1.15rem;
-          color: #e0e7ef;
-          line-height: 1.7;
-          font-weight: 500;
-          background: rgba(30, 41, 59, 0.3);
-          padding: 1.5rem;
-          border-radius: 12px;
-          backdrop-filter: blur(5px);
-          border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        .hero-buttons {
-          display: flex;
-          gap: 1rem;
-          width: 100%;
-          justify-content: center;
-          flex-wrap: wrap;
-          margin-top: 2.5rem;
-        }
-
-        .button-link {
-          text-decoration: none;
-          min-width: 180px;
-        }
-
-        .primary-button {
-          padding: 0.85rem 2.2rem;
-          background: linear-gradient(90deg, #2563eb, #3b82f6);
-          color: white;
-          border-radius: 9999px;
-          font-weight: 600;
-          font-size: 1.05rem;
-          border: none;
-          cursor: pointer;
-          box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-          min-width: 180px;
-          letter-spacing: 0.5px;
-          transition: all 0.3s ease;
-        }
-
-        .tertiary-button {
-          padding: 0.85rem 2.2rem;
-          background: rgba(59, 130, 246, 0.1);
-          color: #93c5fd;
-          border-radius: 9999px;
-          font-weight: 600;
-          font-size: 1.05rem;
-          border: 2px solid rgba(59, 130, 246, 0.3);
-          cursor: pointer;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          min-width: 180px;
-          letter-spacing: 0.5px;
-          transition: all 0.3s ease;
-          backdrop-filter: blur(5px);
-        }
-
-        .scroll-indicator {
-          position: absolute;
-          bottom: 2rem;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .scroll-text {
-          color: rgba(255, 255, 255, 0.6);
-          margin-bottom: 0.5rem;
-          font-size: 0.8rem;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-        }
-
-        .scroll-icon {
-          width: 24px;
-          height: 40px;
-          border: 2px solid rgba(255, 255, 255, 0.6);
-          border-radius: 9999px;
-          display: flex;
-          justify-content: center;
-          padding-top: 0.5rem;
-        }
-
-        .scroll-dot {
-          width: 4px;
-          height: 8px;
-          background-color: rgba(255, 255, 255, 0.6);
-          border-radius: 9999px;
-        }
-
-        html, body, #root {
-          max-width: 100vw;
-          overflow-x: hidden;
-        }
-      `}</style>
+      {/* Skill Highlight Effect */}
+      <AnimatePresence>
+        {activeSkill && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 pointer-events-none z-0"
+            style={{
+              background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
+                ${techSkills.find(s => s.name === activeSkill)?.color}15 0%, 
+                transparent 60%)`,
+            }}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
