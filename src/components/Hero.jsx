@@ -159,7 +159,7 @@ const Home = () => {
               <span>Full Stack Developer | 1+ Year Experience</span>
             </div>
 
-            <p className="hero-greeting">Hello, My Name Is</p>
+            <p className="hero-greeting">Hello, I'm</p>
 
             <h1 className="hero-title">
               BRIAN <br />
@@ -239,33 +239,7 @@ const Home = () => {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <div className="image-glow"></div>
-            <motion.div
-              className="image-border"
-              animate={{
-                y: mouse.y * -15,
-                x: mouse.x * -15,
-                rotateX: mouse.y * 10,
-                rotateY: mouse.x * 10,
-              }}
-              transition={{ type: "spring", stiffness: 80 }}
-            >
-              <div className="image-overlay"></div>
-              <div className="profile-image-wrapper">
-                <img
-                  src={profileImage}
-                  alt="Brian Iraru"
-                  className="profile-image"
-                />
-                <div className="profile-overlay">
-                  <div className="profile-status">
-                    <span className="status-dot"></span>
-                    Available for work
-                  </div>
-                </div>
-              </div>
-              <div className="image-accent"></div>
-              <div className="image-shine"></div>
-            </motion.div>
+            
             
             {/* Floating Elements */}
             <motion.div
