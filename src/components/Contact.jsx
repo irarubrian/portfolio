@@ -38,7 +38,7 @@ const Contact = () => {
       <div className="contact-content">
         {/* Info Section */}
         <div className="contact-info">
-          <p><strong>Age:</strong> 21</p>
+          <p><strong>Age:</strong> 23</p>
           <p>
             <strong>Email:</strong>{' '}
             <a href="mailto:brian.o.iraru@gmail.com">brian.o.iraru@gmail.com</a>

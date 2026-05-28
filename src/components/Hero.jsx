@@ -1,372 +1,509 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
-import { 
-  FaGithub, FaLinkedin, FaEnvelope, FaTwitter, FaArrowDown, 
-  FaCode, FaRocket, FaCloudUploadAlt, FaUsers, 
-  FaStar, FaMobile, FaDatabase, FaCloud, FaLaptopCode,
-  FaMoneyBillWave, FaExchangeAlt
+import { motion, useAnimation, useInView } from "framer-motion";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaArrowDown,
+  FaCode,
+  FaLaptopCode,
+  FaServer,
+  FaMobileAlt,
+  FaAward,
+  FaUsers,
+  FaRocket,
+  FaCheckCircle,
+  FaPython,
+  FaReact,
+  FaDatabase,
+  FaGitAlt,
+  FaFigma,
+  FaCss3Alt,
+  FaHtml5,
+  FaJs,
 } from "react-icons/fa";
-import { 
-  SiJavascript, SiHtml5, SiCss3, SiFramer, 
-  SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, 
-  SiNodedotjs, SiPython, SiPostgresql, SiMongodb
+import {
+  SiTailwindcss,
+  SiTypescript,
+  SiFlask,
+  SiFastapi,
+  SiPostgresql,
+  SiSqlite,
 } from "react-icons/si";
-import { FiCopy } from "react-icons/fi";
-import { GiStarsStack } from "react-icons/gi";
-import profileImage from "../assets/profile.jpeg";
+import { HiLightningBolt, HiBriefcase } from "react-icons/hi";
+import { TbApi } from "react-icons/tb";
 import "./Hero.css";
+import profileImage from "../assets/profile.jpeg";
 
-// Fix: Use FaAws instead of SiAmazonaws
-const techSkills = [
-  { name: 'JavaScript', percent: 90, color: '#F7DF1E', icon: <SiJavascript /> },
-  { name: 'HTML5', percent: 95, color: '#E44D26', icon: <SiHtml5 /> },
-  { name: 'CSS3', percent: 92, color: '#264DE4', icon: <SiCss3 /> },
-  { name: 'React.js', percent: 92, color: '#61DAFB', icon: <SiReact /> },
-  { name: 'Next.js', percent: 88, color: '#000000', icon: <SiNextdotjs /> },
-  { name: 'TypeScript', percent: 86, color: '#3178C6', icon: <SiTypescript /> },
-  { name: 'Tailwind CSS', percent: 94, color: '#06B6D4', icon: <SiTailwindcss /> },
-  { name: 'Node.js', percent: 89, color: '#68A063', icon: <SiNodedotjs /> },
-  { name: 'Python', percent: 90, color: '#3572A5', icon: <SiPython /> },
-  { name: 'Daraja API', percent: 85, color: '#00B341', icon: <FaMoneyBillWave /> },
-  { name: 'Framer Motion', percent: 88, color: '#0055FF', icon: <SiFramer /> },
-  { name: 'PostgreSQL', percent: 88, color: '#336791', icon: <SiPostgresql /> },
-  { name: 'MongoDB', percent: 86, color: '#47A248', icon: <SiMongodb /> },
-  { name: 'AWS', percent: 85, color: '#FF9900', icon: <FaCloud /> },
-  { name: 'REST APIs', percent: 90, color: '#00ACC1', icon: <FaExchangeAlt /> },
+const services = [
+  {
+    title: "Frontend Development",
+    icon: <FaLaptopCode />,
+    desc: "Building modern, responsive and animated interfaces using React, TypeScript & Tailwind.",
+    gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+  },
+  {
+    title: "Backend Systems",
+    icon: <FaServer />,
+    desc: "Developing secure APIs, authentication systems and scalable backend services with Python, Flask & FastAPI.",
+    gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+  },
+  {
+    title: "Database Management",
+    icon: <FaDatabase />,
+    desc: "Designing and managing PostgreSQL and SQLite databases for optimal performance.",
+    gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+  },
+  {
+    title: "API Integration",
+    icon: <TbApi />,
+    desc: "Integrating third-party APIs including Daraja API for payment solutions.",
+    gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+  },
 ];
 
-const Hero = () => {
-  const [isHoveringLogo, setIsHoveringLogo] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [activeSkill, setActiveSkill] = useState(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const controls = useAnimation();
-  const containerRef = useRef(null);
+const achievements = [
+  { number: "1+", label: "Years Experience", icon: <FaAward /> },
+  { number: "20+", label: "Projects Completed", icon: <FaRocket /> },
+  { number: "15+", label: "Happy Clients", icon: <FaUsers /> },
+  { number: "100%", label: "Client Satisfaction", icon: <FaCheckCircle /> },
+];
+
+const technicalSkills = [
+  { name: "HTML5", icon: <FaHtml5 />, color: "#E34F26" },
+  { name: "CSS3", icon: <FaCss3Alt />, color: "#1572B6" },
+  { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#06B6D4" },
+  { name: "JavaScript", icon: <FaJs />, color: "#F7DF1E" },
+  { name: "React.js", icon: <FaReact />, color: "#61DAFB" },
+  { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6" },
+  { name: "Python", icon: <FaPython />, color: "#3776AB" },
+  { name: "Flask", icon: <SiFlask />, color: "#000000" },
+  { name: "FastAPI", icon: <SiFastapi />, color: "#009688" },
+  { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169E1" },
+  { name: "SQLite", icon: <SiSqlite />, color: "#003B57" },
+  { name: "Git/GitHub", icon: <FaGitAlt />, color: "#F05032" },
+  { name: "Figma", icon: <FaFigma />, color: "#F24E1E" },
+  { name: "Daraja API", icon: <TbApi />, color: "#00A86B" },
+];
+
+const softSkills = [
+  "Good Communication",
+  "Problem Solving",
+  "Team Collaboration",
+  "Time Management",
+  "Critical Thinking",
+  "Adaptability",
+];
+
+const Home = () => {
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
+    const move = (e) => {
+      setMouse({
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight,
       });
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    window.addEventListener("mousemove", move);
+    setIsVisible(true);
+
+    return () => window.removeEventListener("mousemove", move);
   }, []);
 
-  useEffect(() => {
-    if (isHoveringLogo) {
-      controls.start({
-        rotate: 360,
-        transition: { duration: 10, ease: "linear", repeat: Infinity },
-      });
-    } else {
-      controls.start({
-        rotate: 0,
-        transition: { duration: 0.8, ease: "easeOut" },
-      });
-    }
-  }, [isHoveringLogo, controls]);
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("brian.o.iraru@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const scrollToNext = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
   };
 
-  const containerVariants = {
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
+  const staggerContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] },
+      transition: {
+        staggerChildren: 0.1,
+      },
     },
   };
 
   return (
-    <section ref={containerRef} className="hero-section">
-      {/* Background */}
-      <div className="hero-gradient-bg">
-        <div className="hero-gradient-overlay" />
+    <div className="home-container">
+      {/* Animated Background */}
+      <div className="animated-bg">
+        <div className="gradient-bg"></div>
+        <div className="grid-pattern"></div>
       </div>
 
-      {/* Hire Me Logo */}
-      <motion.div
-        className="hero-hire-logo"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        whileHover={{ scale: 1.05 }}
-        onMouseEnter={() => setIsHoveringLogo(true)}
-        onMouseLeave={() => setIsHoveringLogo(false)}
-      >
-        <motion.div
-          style={{ transformStyle: "preserve-3d" }}
-          animate={{
-            rotateX: mousePosition.y * 15 - 7.5,
-            rotateY: mousePosition.x * 15 - 7.5,
-          }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        >
-          <motion.a
-            href="/contact"
-            className="relative block w-full h-full rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 shadow-2xl overflow-hidden"
-            animate={controls}
-            whileTap={{ scale: 0.95 }}
+      {/* HERO SECTION */}
+      <section id="home" className="hero-section">
+        <div className="hero-content">
+          {/* LEFT COLUMN */}
+          <motion.div
+            className="hero-left"
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUpVariants}
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
-              animate={{ x: ["-100%", "100%"] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white font-bold text-sm md:text-base z-10 tracking-wider">
-                Hire Me
-              </span>
+            <div className="hero-badge">
+              <HiLightningBolt className="badge-icon" />
+              <span>Full Stack Developer | 1+ Year Experience</span>
             </div>
-          </motion.a>
-        </motion.div>
-      </motion.div>
 
-      {/* Main Content */}
-      <motion.div
-        className="relative z-10 flex flex-col items-center justify-center max-w-7xl mx-auto w-full px-4 md:px-8 pt-20 pb-24"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-      >
-        {/* Profile Section */}
-        <motion.div variants={itemVariants} className="hero-profile-container">
-          <div className="relative">
-            <div className="hero-ring-outer" />
-            <div className="hero-ring-inner" />
-            
+            <p className="hero-greeting">Hello, My Name Is</p>
+
+            <h1 className="hero-title">
+              BRIAN <br />
+              <span className="hero-title-highlight">IRARU</span>
+            </h1>
+
+            <div className="typed-container">
+              <p className="hero-description">
+                A passionate full-stack software engineer with 1+ year of experience,
+                focused on building beautiful, scalable and high-performing digital
+                experiences. Specialized in modern web technologies and API integrations.
+              </p>
+            </div>
+
+            <div className="experience-badge">
+              <HiBriefcase className="exp-icon" />
+              <span>1+ Year of Professional Experience</span>
+            </div>
+
+            <div className="hero-buttons">
+              <Link to="/contact">
+                <motion.button
+                  className="btn-primary"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Contact Me
+                  <span className="btn-glow"></span>
+                </motion.button>
+              </Link>
+
+              <a href="/brianiraru.pdf" target="_blank" rel="noreferrer">
+                <motion.button
+                  className="btn-secondary"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Resume
+                </motion.button>
+              </a>
+            </div>
+
+            {/* SOCIAL LINKS */}
             <motion.div
-              className="hero-profile-image"
-              animate={{
-                y: mousePosition.y * -10,
-                x: mousePosition.x * -10,
-              }}
-              transition={{ type: "spring", stiffness: 150, damping: 20 }}
+              className="social-links"
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainerVariants}
             >
-              <div className="hero-profile-overlay" />
+              {[
+                { icon: <FaGithub />, link: "https://github.com/brianiraru", label: "GitHub" },
+                { icon: <FaLinkedin />, link: "https://linkedin.com/in/brianiraru", label: "LinkedIn" },
+                { icon: <FaEnvelope />, link: "mailto:brian.o.iraru@gmail.com", label: "Email" },
+              ].map((item, i) => (
+                <motion.a
+                  key={i}
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-icon"
+                  variants={fadeInUpVariants}
+                  whileHover={{ y: -5, scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.icon}
+                  <span className="social-tooltip">{item.label}</span>
+                </motion.a>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* RIGHT COLUMN - IMAGE */}
+          <motion.div
+            className="hero-right"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <div className="image-glow"></div>
+            <motion.div
+              className="image-border"
+              animate={{
+                y: mouse.y * -15,
+                x: mouse.x * -15,
+                rotateX: mouse.y * 10,
+                rotateY: mouse.x * 10,
+              }}
+              transition={{ type: "spring", stiffness: 80 }}
+            >
+              <div className="image-overlay"></div>
+              <div className="profile-image-wrapper">
+                <img
+                  src={profileImage}
+                  alt="Brian Iraru"
+                  className="profile-image"
+                />
+                <div className="profile-overlay">
+                  <div className="profile-status">
+                    <span className="status-dot"></span>
+                    Available for work
+                  </div>
+                </div>
+              </div>
+              <div className="image-accent"></div>
+              <div className="image-shine"></div>
+            </motion.div>
+            
+            {/* Floating Elements */}
+            <motion.div
+              className="floating-element floating-1"
+              animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 4 }}
+            >
+              <FaCode />
+            </motion.div>
+            <motion.div
+              className="floating-element floating-2"
+              animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 5, delay: 1 }}
+            >
+              <HiLightningBolt />
+            </motion.div>
+            <motion.div
+              className="floating-element floating-3"
+              animate={{ y: [0, -15, 0], rotate: [0, 15, 0] }}
+              transition={{ repeat: Infinity, duration: 6, delay: 2 }}
+            >
+              <FaReact />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ABOUT SECTION */}
+      <section id="about" className="about-section">
+        <div className="about-content">
+          {/* IMAGE COLUMN */}
+          <motion.div
+            className="about-image"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <div className="about-image-glow"></div>
+            <div className="about-image-border">
+              <div className="image-stats">
+                <div className="stat-item">
+                  <span className="stat-number">1+</span>
+                  <span className="stat-label">Years</span>
+                </div>
+              </div>
               <img
                 src={profileImage}
-                alt="Brian Iraru"
-                className="hero-profile-img"
+                alt="Brian"
+                className="about-profile-img"
               />
-              <div className="hero-profile-gradient" />
-            </motion.div>
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
 
-        {/* Welcome Badge */}
-        <motion.div variants={itemVariants} className="hero-welcome-badge">
-          <span className="hero-welcome-text">
-            ✨ Software Engineer | Full Stack Developer ✨
-          </span>
-        </motion.div>
-        
-        {/* Main Title */}
-        <motion.h1 variants={itemVariants} className="hero-title">
-          <span className="hero-title-prefix">I'm </span>
-          <motion.span
-            className="hero-title-name"
-            animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-            transition={{ duration: 6, repeat: Infinity }}
-            style={{ backgroundSize: "200% auto" }}
+          {/* CONTENT COLUMN */}
+          <motion.div
+            className="about-text"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
-            Brian Iraru
-          </motion.span>
-        </motion.h1>
+            <div className="section-header">
+              <p className="section-label">About Me</p>
+              <div className="section-line"></div>
+            </div>
+            
+            <h2 className="section-title">
+              Who <span className="highlight">Am I</span>
+            </h2>
 
-        {/* Typing Animation */}
-        <motion.div variants={itemVariants} className="hero-typing">
-          <TypeAnimation
-            sequence={[
-              "Building digital solutions", 1500,
-              "Creating animations", 1500,
-              "Integrating Daraja API", 1500,
-              "Crafting experiences", 1500,
-            ]}
-            wrapper="div"
-            speed={50}
-            deletionSpeed={60}
-            repeat={Infinity}
-          />
-        </motion.div>
+            <p className="about-description">
+              I am Brian Iraru, a creative and results-driven software engineer with 1+ year
+              of professional experience. Passionate about designing elegant user experiences
+              and powerful web applications. I specialize in modern frontend and backend
+              technologies, API integrations including Daraja API, and database management.
+            </p>
 
-        {/* Short Story / Bio */}
-        <motion.div variants={itemVariants} className="hero-bio">
-          <motion.p className="hero-bio-text">
-            I'm a software engineer passionate about building web applications that make a difference. 
-            I specialize in React, animations with Framer Motion, and integrating Daraja API for M-Pesa payments. 
-            My goal is to create fast, beautiful, and user-friendly solutions that people love to use.
-          </motion.p>
-        </motion.div>
+            {/* Achievements */}
+            <div className="achievements-grid">
+              {achievements.map((achievement, index) => (
+                <motion.div
+                  key={index}
+                  className="achievement-card"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="achievement-icon">{achievement.icon}</div>
+                  <div className="achievement-number">{achievement.number}</div>
+                  <div className="achievement-label">{achievement.label}</div>
+                </motion.div>
+              ))}
+            </div>
 
-        {/* Key Stats */}
-        <motion.div variants={itemVariants} className="hero-stats">
-          <div className="hero-stat">
-            <FaCode />
-            <span>15+ Projects</span>
-          </div>
-          <div className="hero-stat">
-            <FaUsers />
-            <span>20+ Clients</span>
-          </div>
-          <div className="hero-stat">
-            <FaStar />
-            <span>100% Satisfaction</span>
-          </div>
-        </motion.div>
-
-        {/* Tech Skills Grid */}
-        <motion.div variants={itemVariants} className="hero-skills-section">
-          <div className="hero-skills-header">
-            <h3 className="hero-skills-title">
-              <GiStarsStack />
-              Technical Arsenal
-              <GiStarsStack />
-            </h3>
-            <p className="hero-skills-subtitle">Tools & technologies I master</p>
-          </div>
-          
-          <div className="hero-skills-grid">
-            {techSkills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 + index * 0.03 }}
-                whileHover={{ scale: 1.03, y: -2 }}
-                onMouseEnter={() => setActiveSkill(skill.name)}
-                onMouseLeave={() => setActiveSkill(null)}
-                className="hero-skill-card"
-                style={{ borderColor: `${skill.color}40` }}
-              >
-                <div className="hero-skill-header">
-                  <div className="hero-skill-name-wrapper">
-                    <span className="hero-skill-icon" style={{ color: skill.color }}>
-                      {skill.icon}
-                    </span>
-                    <span className="hero-skill-name">{skill.name}</span>
-                  </div>
-                  <span className="hero-skill-percent" style={{ color: skill.color }}>
-                    {skill.percent}%
-                  </span>
-                </div>
-                <div className="hero-skill-bar">
+            {/* TECH STACK */}
+            <div className="tech-stack">
+              <h3 className="tech-title">Technical Skills</h3>
+              <div className="tech-grid">
+                {technicalSkills.map((skill, index) => (
                   <motion.div
-                    className="hero-skill-progress"
-                    style={{ background: skill.color, width: 0 }}
-                    whileInView={{ width: `${skill.percent}%` }}
+                    key={index}
+                    className="tech-item"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.02 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.5 + index * 0.03 }}
-                  />
-                </div>
-              </motion.div>
-            ))}
+                  >
+                    <div className="tech-icon" style={{ color: skill.color }}>
+                      {skill.icon}
+                    </div>
+                    <span>{skill.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Soft Skills */}
+            <div className="soft-skills">
+              <h3 className="tech-title">Soft Skills</h3>
+              <div className="soft-skills-grid">
+                {softSkills.map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    className="soft-skill-item"
+                    whileHover={{ scale: 1.05 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                  >
+                    <span className="soft-skill-dot"></span>
+                    {skill}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <Link to="/contact">
+              <motion.button
+                className="btn-primary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Download CV
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SERVICES SECTION */}
+      <section id="services" className="services-section">
+        <div className="services-header">
+          <div className="section-header">
+            <p className="section-label">My Services</p>
+            <div className="section-line"></div>
           </div>
-        </motion.div>
+          <h2 className="section-title">
+            What <span className="highlight">Can I Do</span>
+          </h2>
+          <p className="services-subtitle">
+            Transforming ideas into exceptional digital experiences
+          </p>
+        </div>
 
-        {/* Action Buttons */}
-        <motion.div variants={itemVariants} className="hero-buttons">
-          <Link to="/contact" style={{ textDecoration: "none" }}>
-            <motion.button className="hero-btn-primary">
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
-                <FaRocket />
-                Hire Me
-              </span>
-            </motion.button>
-          </Link>
-
-          <a href="/brianiraru.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-            <motion.button className="hero-btn-secondary">
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
-                <FaCloudUploadAlt />
-                View Resume
-              </span>
-            </motion.button>
-          </a>
-        </motion.div>
-
-        {/* Social Links */}
-        <motion.div variants={itemVariants} className="hero-social">
-          {[
-            { icon: <FaGithub size={20} />, url: "https://github.com/brianiraru", color: "#ffffff", label: "GitHub" },
-            { icon: <FaLinkedin size={20} />, url: "https://linkedin.com/in/brianiraru", color: "#0a66c2", label: "LinkedIn" },
-            { icon: <FaEnvelope size={20} />, action: handleCopyEmail, color: "#ea4335", label: copied ? "Copied!" : "Email" },
-            { icon: <FaTwitter size={20} />, url: "https://twitter.com/brianiraru", color: "#1d9bf0", label: "Twitter" },
-          ].map((item, index) => (
-            <motion.a
+        <div className="services-grid">
+          {services.map((service, index) => (
+            <motion.div
               key={index}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={item.action}
-              className="hero-social-link"
-              whileHover={{ y: -3 }}
+              className="service-card"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10 }}
+            >
+              <div className="service-icon" style={{ background: service.gradient }}>
+                {service.icon}
+              </div>
+              <h3 className="service-title">{service.title}</h3>
+              <p className="service-description">{service.desc}</p>
+              <div className="service-hover-effect"></div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="cta-section">
+        <motion.div
+          className="cta-content"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="cta-text">
+            <h2 className="cta-title">
+              Let's Work Together <br />
+              On Your Next Project
+            </h2>
+            <p className="cta-description">
+              With 1+ year of experience in full-stack development, I'm ready to
+              collaborate with you to create powerful digital experiences that
+              elevate your brand and deliver real business value.
+            </p>
+          </div>
+
+          <Link to="/contact">
+            <motion.button
+              className="btn-primary btn-large"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(220, 38, 38, 0.4)" }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.div
-                className="hero-social-icon"
-                whileHover={{
-                  background: `radial-gradient(circle at 30% 30%, ${item.color}30, transparent)`,
-                  boxShadow: `0 0 20px ${item.color}40`,
-                }}
-              >
-                {item.icon}
-              </motion.div>
-              <span className="hero-social-label">{item.label}</span>
-            </motion.a>
-          ))}
+              Contact Me
+              <span className="btn-glow"></span>
+            </motion.button>
+          </Link>
         </motion.div>
-      </motion.div>
+      </section>
 
-      {/* Scroll Indicator */}
+      {/* SCROLL INDICATOR */}
       <motion.div
-        className="hero-scroll"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-        whileHover={{ y: 5 }}
-        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
+        className="scroll-indicator"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        onClick={scrollToNext}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <span className="hero-scroll-text">EXPLORE</span>
-        <div className="hero-scroll-icon">
-          <div className="hero-scroll-dot" />
-        </div>
+        <FaArrowDown />
+        <span className="scroll-text">Scroll</span>
       </motion.div>
-
-      {/* Skill Highlight Effect */}
-      <AnimatePresence>
-        {activeSkill && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 pointer-events-none z-0"
-            style={{
-              background: `radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, 
-                ${techSkills.find(s => s.name === activeSkill)?.color}15 0%, 
-                transparent 60%)`,
-            }}
-          />
-        )}
-      </AnimatePresence>
-    </section>
+    </div>
   );
 };
 
-export default Hero;
+export default Home;
