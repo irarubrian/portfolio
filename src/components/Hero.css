@@ -1,4 +1,4 @@
-/* Hero.css - Complete Styling with Proper Image Fitting */
+/* Hero.css - Complete Optimized Styling */
 
 /* ===== CSS VARIABLES ===== */
 :root {
@@ -15,6 +15,7 @@
   --text-dark: #6b7280;
   --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -102,53 +103,10 @@
   width: 100%;
 }
 
-/* Hero Badge */
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  border-radius: 50px;
-  padding: 0.5rem 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-}
-
-.badge-icon {
-  color: var(--primary-red);
-  animation: blink 2s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.experience-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(220, 38, 38, 0.15);
-  border: 1px solid rgba(220, 38, 38, 0.4);
-  border-radius: 50px;
-  padding: 0.5rem 1rem;
-  margin-bottom: 2rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  backdrop-filter: blur(10px);
-}
-
-.exp-icon {
-  color: var(--primary-red);
-  font-size: 1rem;
-}
-
 /* Hero Left Column */
 .hero-left {
   z-index: 2;
+  will-change: transform, opacity;
 }
 
 .hero-greeting {
@@ -231,7 +189,7 @@
   font-size: 1.125rem;
   max-width: 600px;
   margin-bottom: 2rem;
-  animation: fadeInUp 0.8s ease-out 0.3s backwards;
+  animation: fadeInUp 0.6s ease-out 0.3s backwards;
 }
 
 @keyframes fadeInUp {
@@ -260,7 +218,7 @@
   font-weight: 600;
   letter-spacing: 0.025em;
   cursor: pointer;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
   font-size: 1rem;
   overflow: hidden;
   z-index: 1;
@@ -324,7 +282,7 @@
   justify-content: center;
   font-size: 1.25rem;
   color: white;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
   background: rgba(17, 17, 17, 0.8);
   backdrop-filter: blur(10px);
 }
@@ -379,114 +337,6 @@
 @keyframes glowPulse {
   0%, 100% { transform: scale(1); opacity: 0.5; }
   50% { transform: scale(1.1); opacity: 0.8; }
-}
-
-.image-border {
-  position: relative;
-  border: 2px solid rgba(220, 38, 38, 0.3);
-  padding: 1.25rem;
-  background: linear-gradient(135deg, rgba(13, 13, 13, 0.9) 0%, rgba(0, 0, 0, 0.9) 100%);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  transform-style: preserve-3d;
-  z-index: 1;
-}
-
-.image-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, transparent 100%);
-  border-radius: 20px;
-  pointer-events: none;
-}
-
-.profile-image-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.profile-image {
-  width: 100%;
-  max-width: 460px;
-  height: auto;
-  object-fit: contain;
-  transition: all 0.5s ease;
-  border-radius: 12px;
-  display: block;
-}
-
-@media (min-width: 768px) {
-  .profile-image {
-    max-width: 460px;
-  }
-}
-
-.profile-image:hover {
-  filter: grayscale(0%) contrast(100%);
-  transform: scale(1.02);
-}
-
-.profile-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.profile-image-wrapper:hover .profile-overlay {
-  transform: translateY(0);
-}
-
-.profile-status {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: white;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #10b981;
-  border-radius: 50%;
-  animation: pulse-green 2s infinite;
-}
-
-@keyframes pulse-green {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.2); }
-}
-
-.image-accent {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 6rem;
-  height: 6rem;
-  background: linear-gradient(135deg, transparent 50%, var(--primary-red) 50%);
-  border-radius: 0 20px 0 0;
-}
-
-.image-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-  pointer-events: none;
-}
-
-.image-border:hover .image-shine {
-  left: 100%;
 }
 
 /* Floating Elements */
@@ -584,13 +434,14 @@
   position: relative;
 }
 
-/* About Image - FIXED VERSION */
+/* About Image - Optimized */
 .about-image {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  will-change: transform, opacity;
 }
 
 .about-image-glow {
@@ -618,13 +469,75 @@
   margin: 0 auto;
 }
 
-/* IMAGE - PROPER FITTING */
-.about-image-border img {
+/* Image Optimization */
+.about-profile-img {
   width: 100%;
   height: auto;
   object-fit: contain;
   display: block;
   border-radius: 14px;
+  transition: opacity 0.3s ease-in-out, transform 0.5s ease;
+  opacity: 0;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.about-profile-img.loaded {
+  opacity: 1;
+}
+
+.about-profile-img.loading {
+  opacity: 0;
+}
+
+.about-profile-img:hover {
+  transform: scale(1.02);
+}
+
+/* Image Placeholder for Loading */
+.image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    rgba(30, 30, 30, 0.8) 0%,
+    rgba(50, 50, 50, 0.8) 20%,
+    rgba(30, 30, 30, 0.8) 40%,
+    rgba(50, 50, 50, 0.8) 60%,
+    rgba(30, 30, 30, 0.8) 80%,
+    rgba(50, 50, 50, 0.8) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.placeholder-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 /* Stats Box */
@@ -639,6 +552,12 @@
   text-align: center;
   z-index: 10;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: var(--transition-fast);
+}
+
+.image-stats:hover {
+  transform: scale(1.05);
+  background: rgba(220, 38, 38, 1);
 }
 
 .stat-number {
@@ -652,6 +571,11 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* About Text */
+.about-text {
+  will-change: transform, opacity;
 }
 
 .about-description {
@@ -676,7 +600,8 @@
   backdrop-filter: blur(10px);
   border: 1px solid var(--dark-border);
   border-radius: 10px;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
+  will-change: transform;
 }
 
 .achievement-card:hover {
@@ -735,13 +660,16 @@
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 8px;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
   cursor: pointer;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .tech-item:hover {
   border-color: var(--primary-red);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
   box-shadow: 0 5px 15px rgba(220, 38, 38, 0.2);
 }
 
@@ -773,8 +701,9 @@
   background: rgba(17, 17, 17, 0.6);
   border-radius: 8px;
   font-size: 0.875rem;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
   cursor: pointer;
+  will-change: transform;
 }
 
 .soft-skill-item:hover {
@@ -843,9 +772,12 @@
   backdrop-filter: blur(10px);
   padding: 2rem;
   border-radius: 16px;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
   cursor: pointer;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .service-card:hover {
@@ -880,7 +812,7 @@
   font-size: 1.75rem;
   color: white;
   margin-bottom: 1.5rem;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
 }
 
 .service-card:hover .service-icon {
@@ -891,7 +823,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
 }
 
 .service-card:hover .service-title {
@@ -1000,8 +932,9 @@
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
   z-index: 100;
-  transition: var(--transition-default);
+  transition: var(--transition-fast);
   gap: 0.25rem;
+  will-change: transform;
 }
 
 .scroll-text {
@@ -1029,11 +962,6 @@
 
   .hero-right {
     order: -1;
-  }
-
-  .profile-image {
-    max-width: 100%;
-    height: auto;
   }
 
   .about-image {
@@ -1120,6 +1048,44 @@
   }
 }
 
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .floating-element,
+  .scroll-indicator,
+  .service-card:hover,
+  .tech-item:hover {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Hardware acceleration for smoother animations */
+.profile-image,
+.about-profile-img,
+.service-card,
+.tech-item,
+.achievement-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Image optimization */
+img {
+  content-visibility: auto;
+}
+
+/* Lazy loading optimization */
+.about-profile-img {
+  content-visibility: auto;
+}
+
 /* ===== SCROLLBAR STYLING ===== */
 ::-webkit-scrollbar {
   width: 12px;
@@ -1147,4 +1113,34 @@
 ::-moz-selection {
   background: var(--primary-red);
   color: white;
+}
+
+/* ===== SMOOTH SCROLLING ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== FOCUS STYLES FOR ACCESSIBILITY ===== */
+.btn-primary:focus,
+.btn-secondary:focus,
+.social-icon:focus,
+.scroll-indicator:focus {
+  outline: 2px solid var(--primary-red);
+  outline-offset: 2px;
+}
+
+/* ===== LOADING ANIMATION ===== */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in-scale {
+  animation: fadeInScale 0.5s ease-out;
 }

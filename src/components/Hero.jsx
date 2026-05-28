@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   FaGithub,
   FaLinkedin,
@@ -98,6 +98,7 @@ const softSkills = [
 
 const Home = () => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -111,6 +112,11 @@ const Home = () => {
     window.addEventListener("mousemove", move);
     setIsVisible(true);
 
+    // Preload image for faster loading
+    const img = new Image();
+    img.src = profileImage;
+    img.onload = () => setImageLoaded(true);
+
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
@@ -123,7 +129,7 @@ const Home = () => {
 
   const fadeInUpVariants = {
     hidden: { opacity: 0, y: 60 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
   const staggerContainerVariants = {
@@ -154,11 +160,6 @@ const Home = () => {
             animate="visible"
             variants={fadeInUpVariants}
           >
-            <div className="hero-badge">
-              <HiLightningBolt className="badge-icon" />
-              <span>Full Stack Developer | 1+ Year Experience</span>
-            </div>
-
             <p className="hero-greeting">Hello, I'm</p>
 
             <h1 className="hero-title">
@@ -172,11 +173,6 @@ const Home = () => {
                 focused on building beautiful, scalable and high-performing digital
                 experiences. Specialized in modern web technologies and API integrations.
               </p>
-            </div>
-
-            <div className="experience-badge">
-              <HiBriefcase className="exp-icon" />
-              <span>1+ Year of Professional Experience</span>
             </div>
 
             <div className="hero-buttons">
@@ -236,10 +232,9 @@ const Home = () => {
             className="hero-right"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="image-glow"></div>
-            
             
             {/* Floating Elements */}
             <motion.div
@@ -270,13 +265,13 @@ const Home = () => {
       {/* ABOUT SECTION */}
       <section id="about" className="about-section">
         <div className="about-content">
-          {/* IMAGE COLUMN */}
+          {/* IMAGE COLUMN - Optimized with lazy loading and placeholder */}
           <motion.div
             className="about-image"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <div className="about-image-glow"></div>
             <div className="about-image-border">
@@ -286,10 +281,19 @@ const Home = () => {
                   <span className="stat-label">Years</span>
                 </div>
               </div>
+              {!imageLoaded && (
+                <div className="image-placeholder">
+                  <div className="placeholder-shimmer"></div>
+                </div>
+              )}
               <img
                 src={profileImage}
-                alt="Brian"
-                className="about-profile-img"
+                alt="Brian Iraru - Software Engineer"
+                className={`about-profile-img ${imageLoaded ? 'loaded' : 'loading'}`}
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                onLoad={() => setImageLoaded(true)}
               />
             </div>
           </motion.div>
@@ -299,8 +303,8 @@ const Home = () => {
             className="about-text"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <div className="section-header">
               <p className="section-label">About Me</p>
@@ -326,7 +330,7 @@ const Home = () => {
                   className="achievement-card"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
                   viewport={{ once: true }}
                 >
                   <div className="achievement-icon">{achievement.icon}</div>
@@ -347,7 +351,7 @@ const Home = () => {
                     whileHover={{ scale: 1.05, y: -2 }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.02 }}
+                    transition={{ delay: index * 0.01, duration: 0.3 }}
                     viewport={{ once: true }}
                   >
                     <div className="tech-icon" style={{ color: skill.color }}>
@@ -367,10 +371,10 @@ const Home = () => {
                   <motion.div
                     key={index}
                     className="soft-skill-item"
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.02 }}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
                     viewport={{ once: true }}
                   >
                     <span className="soft-skill-dot"></span>
@@ -415,7 +419,7 @@ const Home = () => {
               className="service-card"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
               whileHover={{ y: -10 }}
             >
@@ -434,9 +438,9 @@ const Home = () => {
       <section className="cta-section">
         <motion.div
           className="cta-content"
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
           <div className="cta-text">
